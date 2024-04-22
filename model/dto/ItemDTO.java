@@ -1,7 +1,6 @@
 package model.dto;
 
 public class ItemDTO {
-
     private double itemPrice;
     private double VAT;
     private String itemDescription;
@@ -17,7 +16,6 @@ public class ItemDTO {
      * @param itemID          The identifier of the item.
      */
     public ItemDTO(double itemPrice, double VAT, String itemDescription, int itemID) {
-
         this.itemPrice = itemPrice;
         this.VAT = VAT;
         this.itemDescription = itemDescription;

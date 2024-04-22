@@ -10,6 +10,10 @@ import model.dto.SaleDTO;
 public class Controller {
 
     private Sale sale;
+    private ExternalInventorySystemHandler eish;
+    private ExternalAccountSystemHandler eash;
+    private DiscountHandler dh;
+    private SalelogHandler slh;
 
     /**
      * Constructor for Controller, so creates instance of Controller so it is able
@@ -49,7 +53,7 @@ public class Controller {
      *         and the updated total amount of the sale, etc.
      */
     public SaleDTO enterItem(int id, int quantity) {
-
+        sale.enterItem(id, quantity);
     }
 
     /**

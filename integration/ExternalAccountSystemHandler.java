@@ -20,6 +20,6 @@ public class ExternalAccountSystemHandler {
      *                 etc that is needed to update the account.
      */
     public void updateExternalAccountSystem(SaleDTO saleInfo) {
-
+        
     }
 }

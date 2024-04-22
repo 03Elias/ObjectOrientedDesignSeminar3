@@ -1,13 +1,14 @@
 package model.dto;
 
 import java.time.LocalTime;
+import model.Item;
 
 public class SaleDTO {
 
     private LocalTime saleTime;
     private double totalPrice;
     private double totalVAT;
-    private item[] items;
+    private Item[] items;
     private double totalDiscount;
 
     /**
@@ -20,9 +21,9 @@ public class SaleDTO {
      * @param items         The total items in the SaleDTO.
      * @param totalDiscount The total discount for this current sale.
      */
-    public SaleDTO(double totalPrice, LocalTime timeOfSale, double totalVAT, item[] items, double totalDiscount) {
+    public SaleDTO(double totalPrice, LocalTime saleTime, double totalVAT, Item[] items, double totalDiscount) {
         this.totalPrice = totalPrice;
-        this.saleTime = timeOfSale;
+        this.saleTime = saleTime;
         this.totalVAT = totalVAT;
         this.items = items;
         this.totalDiscount = totalDiscount;
@@ -51,7 +52,7 @@ public class SaleDTO {
      * 
      * @return The items in the current sale is returned as an item array.
      */
-    public item[] getItems() {
+    public Item[] getItems() {
         return items;
     }
 

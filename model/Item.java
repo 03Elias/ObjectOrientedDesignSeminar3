@@ -1,10 +1,8 @@
 package model;
-
 import model.dto.ItemDTO;
 
 public class Item {
-
-    private ItemDTO itemDTO;
+    ItemDTO itemDTO;
     private int quantity;
 
     /**
@@ -17,10 +15,8 @@ public class Item {
      */
 
     public Item(ItemDTO itemDTO, int quantity) {
-
         this.itemDTO = itemDTO;
         this.quantity = quantity;
-
     }
 
     /**
@@ -30,7 +26,8 @@ public class Item {
      * @return The item is returned with the correct quantity of it in the sale.
      */
     public Item increaseQuantity(int quantity) {
-
+        this.quantity += quantity;
+        return this;
     }
 
     /**
@@ -39,7 +36,6 @@ public class Item {
      * @return The total price is returned.
      */
     public double getTotalPrice() {
-        return 0; // Is incorrect
-
+        return this.itemDTO.getItemPrice() * (1 + this.itemDTO.getVAT()) * this.quantity;
     }
 }

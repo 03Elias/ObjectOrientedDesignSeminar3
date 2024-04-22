@@ -11,7 +11,7 @@ public class SalelogHandler {
      * with the Salelog database.
      */
     public SalelogHandler() {
-
+        this.saleList = new Receipt[0];
     }
 
     /**
@@ -21,7 +21,7 @@ public class SalelogHandler {
      */
 
     public void addSale(Receipt receipt) {
-
+        this.saleList[this.saleList.length] = receipt;
     }
 
     /**
@@ -30,7 +30,7 @@ public class SalelogHandler {
      * @return All the receipts of the previous pursaches/sales.
      */
     public Receipt[] getSalelog() {
-
+        return this.saleList;
     }
 
 }

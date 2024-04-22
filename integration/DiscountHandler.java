@@ -7,8 +7,8 @@ public class DiscountHandler {
     /**
      * Starts an new instance of DiscountHandler.
      */
-    public DiscountHandler() {
-
+ public DiscountHandler() {
+ 
     }
 
     /**
@@ -21,8 +21,8 @@ public class DiscountHandler {
      *                   discount for the items in the sale.
      * @return
      */
-    public double getDiscount(int customerID, SaleDTO saleDTO) {
-
+        public double getDiscount(int customerID, SaleDTO saleDTO) {
+            return 0.0;
     }
 
 }

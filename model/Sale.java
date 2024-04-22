@@ -1,24 +1,25 @@
 package model;
 
 import java.time.LocalTime;
-
 import model.dto.ItemDTO;
 import model.dto.SaleDTO;
 
 public class Sale {
-
     private LocalTime saleTime;
     private double totalPrice;
     private double totalVAT;
-    private item[] items;
     private double totalDiscount;
-    private Sale currentSale;
+    private Item[] items;
 
     /**
      * Starts a new instance of Sale (a constructor).
      */
     public Sale() {
-
+        this.saleTime = setTimeOfSale();
+        this.totalPrice = 0;
+        this.totalVAT = 0;
+        this.totalDiscount = 0;
+        this.items = null;
     }
 
     /**
@@ -29,8 +30,12 @@ public class Sale {
      * @return If the item is present in the current sale or not.
      */
     public boolean checkID(int id) {
-
-    }
+        for(Item item : items) {
+            if(item.itemDTO.getItemID() == id) {
+                return true;
+            }
+    } return false;
+}
 
     /**
      * Adds an item to the current sale.
@@ -40,7 +45,7 @@ public class Sale {
      */
 
     public SaleDTO addItem(ItemDTO itemInfo) {
-
+        
     }
 
     /**
@@ -52,6 +57,7 @@ public class Sale {
      *         current sale.
      */
     public SaleDTO increaseItemQuantity(int id, int quantityToAdd) {
+        
 
     }
 
@@ -61,7 +67,7 @@ public class Sale {
      * @return The SaleDTO of the current sale.
      */
     public SaleDTO getSaleDTO() {
-
+        return new SaleDTO(this.totalPrice, this.saleTime, this.totalVAT, this.items, this.totalDiscount);
     }
 
     /**
@@ -76,18 +82,6 @@ public class Sale {
     }
 
     /**
-     * Adds the payment to the current sale.
-     * 
-     * @param amountPaid The amount that the customer paid.
-     * @return A SaleDTO is returned which contains all sale information regarding
-     *         the current sale.
-     */
-
-    public SaleDTO addPayment(double amountPaid) {
-
-    }
-
-    /**
      * Ends the current sale.
      * 
      * @return The finalized SaleDTO containing all the information regarding the
@@ -97,8 +91,7 @@ public class Sale {
 
     }
 
-    private void setTimeOfSale() {
-
+    private LocalTime setTimeOfSale() {
+        return LocalTime.now();
     }
-
 }
