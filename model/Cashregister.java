@@ -14,8 +14,9 @@ public class Cashregister {
      *                   in the register espacially the total price info.
      */
     public void updateCashInRegister(double amountPaid, SaleDTO saleInfo){
-        double totalPrice = saleInfo.getTotalPrice();
+        double totalPrice = getSalePrice(saleInfo);
         double cashToBePutInToRegister = totalPrice - amountPaid;
+
         if (cashToBePutInToRegister > 0) {
             cashToBePutInToRegister = 0; // fix more, the tought is if person pay less than
                                          // totalPrice then no cash will be over and person needs to pay the rest.
@@ -42,12 +43,17 @@ public class Cashregister {
      * @return The calculated change that the customer is given.
      */
     public double calculatedChange(double amountPaid, SaleDTO saleInfo) {
-        double totalPrice = saleInfo.getTotalPrice();
+        double totalPrice = getSalePrice(saleInfo);
         change = amountPaid - totalPrice;
+
         if (change > 0) {
             return change;
         } else {
             return 0;
         }
+    }
+
+    private double getSalePrice(SaleDTO saleInfo) {
+        return saleInfo.getTotalPrice() - saleInfo.getTotalDiscount();
     }
 }

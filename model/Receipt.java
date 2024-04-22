@@ -3,7 +3,6 @@ package model;
 import model.dto.SaleDTO;
 
 public class Receipt {
-
     private SaleDTO saleInfo;
     private double change;
     private double amountPaid;
@@ -18,10 +17,9 @@ public class Receipt {
      *                   case of overpaying.
      */
 
-    Receipt(SaleDTO saleInfo, double amountPaid, double change) {
+    public Receipt(SaleDTO saleInfo, double amountPaid, double change) {
         this.saleInfo = saleInfo;
         this.amountPaid = amountPaid;
         this.change = change;
     }
-
 }

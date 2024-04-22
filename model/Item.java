@@ -38,4 +38,13 @@ public class Item {
     public double getTotalPrice() {
         return this.itemDTO.getItemPrice() * (1 + this.itemDTO.getVAT()) * this.quantity;
     }
+
+    /**
+     * Gets the total VAT of the item.
+     * 
+     * @return The total VAT is returned.
+     * */
+    public double getTotalVAT() {
+        return this.itemDTO.getItemPrice() * this.itemDTO.getVAT() * this.quantity;
+    }
 }

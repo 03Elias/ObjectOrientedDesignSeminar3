@@ -12,7 +12,6 @@ public class View {
      */
 
     public View(Controller contr) {
-
         this.contr = contr;
     }
 }

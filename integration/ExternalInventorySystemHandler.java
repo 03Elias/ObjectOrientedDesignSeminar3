@@ -26,9 +26,9 @@ public class ExternalInventorySystemHandler {
 
     /**
      * To retrive item information of a specific item from the external inventory.
-     * @param iteminfo
+     * @param id The id of the item that is needed to be fetched.
      */
-    public ItemDTO getItemInfo(ItemDTO iteminfo){
+    public ItemDTO getItemInfo(int id){
         //fetch item info from external inventory
         return new ItemDTO(0, 0.0, "itemDescription", 0);
     }

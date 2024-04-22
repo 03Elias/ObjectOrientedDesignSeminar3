@@ -44,8 +44,9 @@ public class Sale {
      * @return The updated sale with the SaleDTO.
      */
 
-    public SaleDTO addItem(ItemDTO itemInfo) {
-        
+    public SaleDTO addItem(ItemDTO itemInfo, int quantity) {
+        this.items[this.items.length] = new Item(itemInfo, quantity);
+        return getSaleDTO();
     }
 
     /**
@@ -57,8 +58,12 @@ public class Sale {
      *         current sale.
      */
     public SaleDTO increaseItemQuantity(int id, int quantityToAdd) {
-        
-
+        for(Item item : items) {
+            if(item.itemDTO.getItemID() == id) {
+                item.increaseQuantity(quantityToAdd);
+            }
+        }
+        return getSaleDTO();
     }
 
     /**
@@ -73,12 +78,13 @@ public class Sale {
     /**
      * Applies the discount on the current sale based on the discount info.
      * 
-     * @param discountInfo Gives the discount information based on the current sale.
+     * @param discountAmount Gives the discount information based on the current sale.
      * @return The applicable discount is returned in the SaleDTO which contains the
      *         Sale information.
      */
-    public SaleDTO applyDiscount(double discountInfo) {
-
+    public SaleDTO applyDiscount(double discountAmount) {
+        this.totalDiscount = discountAmount;
+        return getSaleDTO();
     }
 
     /**
@@ -88,9 +94,18 @@ public class Sale {
      *         ended sale.
      */
     public SaleDTO endSale() {
-
+        for(Item item : items) {
+            this.totalPrice += item.getTotalPrice();
+            this.totalVAT += item.itemDTO.getItemPrice() * item.itemDTO.getVAT();
+        }
+        return getSaleDTO();
     }
 
+    /**
+     * Sets the time of sale.
+     * 
+     * @return The time of sale is returned.
+     * */
     private LocalTime setTimeOfSale() {
         return LocalTime.now();
     }
