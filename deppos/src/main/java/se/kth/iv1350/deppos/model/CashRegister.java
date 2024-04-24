@@ -2,7 +2,7 @@ package model;
 
 import model.dto.SaleDTO;
 
-public class Cashregister {
+public class CashRegister {
     private double cashInRegister;
     private double change;
 
@@ -53,6 +53,13 @@ public class Cashregister {
         }
     }
 
+    /**
+     * Calculates the total price of the sale.
+     * 
+     * @param saleInfo The sale information that contains the total price and the discount.
+     * 
+     * @return The total price of the sale.
+     * */
     private double getSalePrice(SaleDTO saleInfo) {
         return saleInfo.getTotalPrice() - saleInfo.getTotalDiscount();
     }

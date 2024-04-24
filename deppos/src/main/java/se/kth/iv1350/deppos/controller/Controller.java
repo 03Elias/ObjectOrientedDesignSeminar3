@@ -1,19 +1,19 @@
-package controller;
+package se.kth.iv1350.deppos.controller;
 
-import integration.DiscountHandler;
-import integration.ExternalAccountSystemHandler;
-import integration.ExternalInventorySystemHandler;
-import integration.SalelogHandler;
-import model.Cashregister;
-import model.Sale;
-import model.Receipt;
-import model.dto.ItemDTO;
-import model.dto.SaleDTO;
+import se.kth.iv1350.deppos.integration.DiscountHandler;
+import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
+import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
+import se.kth.iv1350.deppos.integration.SalelogHandler;
+import se.kth.iv1350.deppos.model.CashRegister;
+import se.kth.iv1350.deppos.model.Sale;
+import se.kth.iv1350.deppos.model.dto.ItemDTO;
+import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
+import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class Controller {
 
     private Sale sale;
-    private Cashregister cashregister;
+    private CashRegister cashregister;
     private ExternalInventorySystemHandler eish;
     private ExternalAccountSystemHandler eash;
     private DiscountHandler dh;
@@ -30,7 +30,7 @@ public class Controller {
      */
 
     public Controller(ExternalInventorySystemHandler eish, ExternalAccountSystemHandler eash, DiscountHandler dh,
-            SalelogHandler slh, Cashregister cashregister) {
+            SalelogHandler slh, CashRegister cashregister) {
         
         this.cashregister = cashregister;
         this.eish = eish;
@@ -44,6 +44,18 @@ public class Controller {
      */
     public void startSale() {
         sale = new Sale();
+    }
+
+    /**
+     * Retrives the current sale.
+     * 
+     * @return The current sale.
+     * 
+     * @see se.kth.iv1350.deppos.model.Sale
+     * 
+     */
+    public Sale getSale() {
+        return sale;
     }
 
     /**
@@ -110,7 +122,7 @@ public class Controller {
         double change = this.cashregister.calculatedChange(amountPaid, saleInfo);
         this.cashregister.updateCashInRegister(amountPaid, saleInfo);
 
-        slh.addSale(new Receipt(saleInfo, amountPaid, change));
+        slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change));
 
         return sale.getSaleDTO();
     }

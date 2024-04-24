@@ -1,6 +1,6 @@
-package view;
+package se.kth.iv1350.deppos.view;
 
-import controller.Controller;
+import se.kth.iv1350.deppos.controller.Controller;
 
 public class View {
     private Controller contr;
