@@ -1,6 +1,6 @@
-package model;
+package se.kth.iv1350.deppos.model;
 
-import model.dto.SaleDTO;
+import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class CashRegister {
     private double cashInRegister;

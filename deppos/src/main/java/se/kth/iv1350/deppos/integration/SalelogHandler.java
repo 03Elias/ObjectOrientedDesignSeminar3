@@ -1,6 +1,6 @@
-package integration;
+package se.kth.iv1350.deppos.integration;
 
-import model.dto.ReceiptDTO;
+import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
 
 public class SalelogHandler {
     private ReceiptDTO[] saleList;

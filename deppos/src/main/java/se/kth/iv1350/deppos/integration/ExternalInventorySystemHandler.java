@@ -1,7 +1,7 @@
-package integration;
+package se.kth.iv1350.deppos.integration;
 
-import model.dto.ItemDTO;
-import model.dto.SaleDTO;
+import se.kth.iv1350.deppos.model.dto.ItemDTO;
+import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ExternalInventorySystemHandler {
 

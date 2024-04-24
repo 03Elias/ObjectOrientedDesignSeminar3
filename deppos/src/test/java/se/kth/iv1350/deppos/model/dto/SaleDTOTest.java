@@ -11,27 +11,27 @@ public class SaleDTOTest {
     }
 
     @Test
-    public void getSaleTime_ReturnsSaleTime() {
+    public void testGetSaleTime() {
         // Placeholder test
     }
 
     @Test
-    public void getTotalPrice_ReturnsTotalPrice() {
+    public void testGetTotalPrice() {
         // Placeholder test
     }
 
     @Test
-    public void getItems_ReturnsItemArray() {
+    public void testGetItems() {
         // Placeholder test
     }
 
     @Test
-    public void getTotalDiscount_ReturnsTotalDiscount() {
+    public void testGetTotalDiscount() {
         // Placeholder test
     }
 
     @Test
-    public void getTotalVAT_ReturnsTotalVAT() {
+    public void testGetTotalVAT() {
         // Placeholder test
     }
 }

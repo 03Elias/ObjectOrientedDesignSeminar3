@@ -1,4 +1,4 @@
-package model.dto;
+package se.kth.iv1350.deppos.model.dto;
 
 public class ItemDTO {
     private double itemPrice;

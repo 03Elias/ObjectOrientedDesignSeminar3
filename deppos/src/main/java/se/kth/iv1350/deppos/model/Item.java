@@ -1,5 +1,5 @@
-package model;
-import model.dto.ItemDTO;
+package se.kth.iv1350.deppos.model;
+import se.kth.iv1350.deppos.model.dto.ItemDTO;
 
 public class Item {
     ItemDTO itemDTO;

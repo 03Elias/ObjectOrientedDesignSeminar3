@@ -1,8 +1,9 @@
-package model;
+package se.kth.iv1350.deppos.model;
 
 import java.time.LocalTime;
-import model.dto.ItemDTO;
-import model.dto.SaleDTO;
+
+import se.kth.iv1350.deppos.model.dto.ItemDTO;
+import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class Sale {
     private LocalTime saleTime;

@@ -1,4 +1,4 @@
-package model.dto;
+package se.kth.iv1350.deppos.model.dto;
 
 public class ReceiptDTO {
     private SaleDTO saleInfo;
@@ -25,7 +25,7 @@ public class ReceiptDTO {
      * 
      * @return The information regarding the sale is returned.
      * 
-     * @see model.dto.SaleDTO
+     * @see se.kth.iv1350.deppos.model.dto.SaleDTO
      */
     public SaleDTO getSaleInfo() {
         return saleInfo;
