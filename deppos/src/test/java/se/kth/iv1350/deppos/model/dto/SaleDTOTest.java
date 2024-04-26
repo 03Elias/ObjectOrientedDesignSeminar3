@@ -11,15 +11,21 @@ import se.kth.iv1350.deppos.model.Item;
 
 public class SaleDTOTest {
     private static SaleDTO sale;
-    private static LocalTime saleTime = LocalTime.now();
-    private static double runningTotal = 33.0;
-    private static double totalPrice = 33.0;
-    private static double totalVAT = 3.0;
-    private static ArrayList<Item> items = new ArrayList<>();
-    private static double totalDiscount = 5.0;
+    private static LocalTime saleTime;
+    private static double runningTotal;
+    private static double totalPrice;
+    private static double totalVAT;
+    private static ArrayList<Item> items;
+    private static double totalDiscount;
 
     @BeforeAll
     public static void setup() {
+        saleTime = LocalTime.now();
+        runningTotal = 33.0;
+        totalPrice = 33.0;
+        totalVAT = 3.0;
+        items = new ArrayList<>();
+        totalDiscount = 5.0;
         sale = new SaleDTO(runningTotal, totalPrice, saleTime, totalVAT, items, totalDiscount);
     }
 

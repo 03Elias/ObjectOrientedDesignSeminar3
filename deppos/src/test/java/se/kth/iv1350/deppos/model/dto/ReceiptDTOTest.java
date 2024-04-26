@@ -11,18 +11,27 @@ import java.util.ArrayList;
 
 public class ReceiptDTOTest {
     private static ReceiptDTO receipt;
-    private static LocalTime saleTime = LocalTime.now();
-    private static double runningTotal = 33.0;
-    private static double totalPrice = 33.0;
-    private static double totalVAT = 3.0;
-    private static ArrayList<Item> items = new ArrayList<>();
-    private static double totalDiscount = 5.0;
-    private static SaleDTO saleDTO = new SaleDTO(runningTotal, totalPrice, saleTime, totalVAT, items, totalDiscount);
-    private static double amountPaid = 33.0;
-    private static double change = 0.0;
+    private static LocalTime saleTime;
+    private static double runningTotal;
+    private static double totalPrice;
+    private static double totalVAT;
+    private static ArrayList<Item> items;
+    private static double totalDiscount;
+    private static SaleDTO saleDTO;
+    private static double amountPaid;
+    private static double change;
 
     @BeforeAll
     public static void setup() {
+        saleTime = LocalTime.now();
+        runningTotal = 33.0;
+        totalPrice = 33.0;
+        totalVAT = 3.0;
+        items = new ArrayList<>();
+        totalDiscount = 5.0;
+        amountPaid = 33.0;
+        change = 0.0;
+        saleDTO = new SaleDTO(runningTotal, totalPrice, saleTime, totalVAT, items, totalDiscount);
         receipt = new ReceiptDTO(saleDTO, amountPaid, change);
     }
 

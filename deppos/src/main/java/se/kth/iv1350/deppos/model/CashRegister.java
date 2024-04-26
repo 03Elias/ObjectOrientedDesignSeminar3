@@ -13,16 +13,8 @@ public class CashRegister {
      * @param saleInof   The sale information that is needed for updating the cash
      *                   in the register espacially the total price info.
      */
-    public void updateCashInRegister(double amountPaid, SaleDTO saleInfo){
-        double totalPrice = getSalePrice(saleInfo);
-        double cashToBePutInToRegister = totalPrice - amountPaid;
-
-        if (cashToBePutInToRegister > 0) {
-            cashToBePutInToRegister = 0; // fix more, the tought is if person pay less than
-                                         // totalPrice then no cash will be over and person needs to pay the rest.
-        } else if (cashToBePutInToRegister <= 0) {
-            cashInRegister += cashToBePutInToRegister;
-        }
+    public void updateCashInRegister(double amountPaid){
+        cashInRegister += amountPaid;
     }
 
     /**

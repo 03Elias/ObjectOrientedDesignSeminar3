@@ -6,13 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemDTOTest {
     private static ItemDTO item;
-    private static double itemPrice = 50.0;
-    private static double VAT = 0.12;
-    private static String itemDescription = "TestItem";
-    private static int itemID = 1;
+    private static double itemPrice;
+    private static double VAT;
+    private static String itemDescription;
+    private static int itemID;
 
     @BeforeAll
     public static void setup() {
+        itemPrice = 50.0;
+        VAT = 0.12;
+        itemDescription = "TestItem";
+        itemID = 1;
         item = new ItemDTO(itemPrice, VAT, itemDescription, itemID);
     }
 
