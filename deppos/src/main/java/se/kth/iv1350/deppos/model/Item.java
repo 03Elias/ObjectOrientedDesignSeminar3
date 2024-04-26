@@ -20,6 +20,26 @@ public class Item {
     }
 
     /**
+     * Gets the information about the item.
+     * 
+     * @return The information about the item is returned.
+     * 
+     * @see se.kth.iv1350.deppos.model.dto.ItemDTO
+     */
+    public ItemDTO getItemDTO() {
+        return itemDTO;
+    }
+
+    /**
+     * Gets the quantity of the item.
+     * 
+     * @return The quantity of the item is returned.
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
      * Increases the quantity of a certain Item if already bought/scanned.
      * 
      * @param quantity The quantity of the item in the current sale.

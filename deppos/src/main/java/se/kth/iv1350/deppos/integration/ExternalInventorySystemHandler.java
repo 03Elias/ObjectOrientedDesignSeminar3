@@ -30,6 +30,6 @@ public class ExternalInventorySystemHandler {
      */
     public ItemDTO getItemInfo(int id){
         //fetch item info from external inventory
-        return new ItemDTO(0, 0.0, "itemDescription", 0);
+        return new ItemDTO(30.0, 0.1, "itemDescription", 0);
     }
 }

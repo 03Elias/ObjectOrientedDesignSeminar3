@@ -1,26 +1,28 @@
 package se.kth.iv1350.deppos.model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class Sale {
     private LocalTime saleTime;
+    private double runningTotal;
     private double totalPrice;
     private double totalVAT;
     private double totalDiscount;
-    private Item[] items;
+    private ArrayList<Item> items;
 
     /**
      * Starts a new instance of Sale (a constructor).
      */
     public Sale() {
         this.saleTime = setTimeOfSale();
-        this.totalPrice = 0;
-        this.totalVAT = 0;
-        this.totalDiscount = 0;
-        this.items = null;
+        this.totalPrice = 0.0;
+        this.totalVAT = 0.0;
+        this.totalDiscount = 0.0;
+        this.items = new ArrayList<>();
     }
 
     /**
@@ -46,7 +48,9 @@ public class Sale {
      */
 
     public SaleDTO addItem(ItemDTO itemInfo, int quantity) {
-        this.items[this.items.length] = new Item(itemInfo, quantity);
+        Item item = new Item(itemInfo, quantity);
+        this.items.add(item);
+        this.runningTotal += item.getTotalPrice();
         return getSaleDTO();
     }
 
@@ -59,9 +63,11 @@ public class Sale {
      *         current sale.
      */
     public SaleDTO increaseItemQuantity(int id, int quantityToAdd) {
-        for(Item item : items) {
-            if(item.itemDTO.getItemID() == id) {
-                item.increaseQuantity(quantityToAdd);
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            if (item.itemDTO.getItemID() == id) {
+                item = item.increaseQuantity(quantityToAdd);
+                items.set(i, item);
             }
         }
         return getSaleDTO();
@@ -73,7 +79,7 @@ public class Sale {
      * @return The SaleDTO of the current sale.
      */
     public SaleDTO getSaleDTO() {
-        return new SaleDTO(this.totalPrice, this.saleTime, this.totalVAT, this.items, this.totalDiscount);
+        return new SaleDTO(this.runningTotal, this.totalPrice, this.saleTime, this.totalVAT, this.items, this.totalDiscount);
     }
 
     /**

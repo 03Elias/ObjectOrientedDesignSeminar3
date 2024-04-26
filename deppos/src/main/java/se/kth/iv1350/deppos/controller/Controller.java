@@ -11,9 +11,8 @@ import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class Controller {
-
     private Sale sale;
-    private CashRegister cashregister;
+    private CashRegister cashRegister;
     private ExternalInventorySystemHandler eish;
     private ExternalAccountSystemHandler eash;
     private DiscountHandler dh;
@@ -30,9 +29,9 @@ public class Controller {
      */
 
     public Controller(ExternalInventorySystemHandler eish, ExternalAccountSystemHandler eash, DiscountHandler dh,
-            SalelogHandler slh, CashRegister cashregister) {
+            SalelogHandler slh, CashRegister cashRegister) {
         
-        this.cashregister = cashregister;
+        this.cashRegister = cashRegister;
         this.eish = eish;
         this.eash = eash;
         this.dh = dh;
@@ -119,8 +118,8 @@ public class Controller {
         eash.updateExternalAccountSystem(saleInfo);
         eish.updateExternalInventorySystem(saleInfo);
 
-        double change = this.cashregister.calculatedChange(amountPaid, saleInfo);
-        this.cashregister.updateCashInRegister(amountPaid, saleInfo);
+        double change = this.cashRegister.calculatedChange(amountPaid, saleInfo);
+        this.cashRegister.updateCashInRegister(amountPaid, saleInfo);
 
         slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change));
 
