@@ -1,16 +1,18 @@
 package se.kth.iv1350.deppos.integration;
 
+import java.util.ArrayList;
+
 import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
 
 public class SalelogHandler {
-    private ReceiptDTO[] saleList;
+    private ArrayList<ReceiptDTO> saleList;
 
     /**
      * The constructor that makes a new instance of SalelogHandler that communicates
      * with the Salelog database.
      */
     public SalelogHandler() {
-        this.saleList = new ReceiptDTO[0];
+        this.saleList = new ArrayList<ReceiptDTO>();
     }
 
     /**
@@ -20,7 +22,7 @@ public class SalelogHandler {
      */
 
     public void addSale(ReceiptDTO receipt) {
-        this.saleList[this.saleList.length] = receipt;
+        this.saleList.add(receipt);
     }
 
     /**
@@ -28,7 +30,7 @@ public class SalelogHandler {
      * 
      * @return All the receipts of the previous pursaches/sales.
      */
-    public ReceiptDTO[] getSalelog() {
+    public ArrayList<ReceiptDTO> getSalelog() {
         return this.saleList;
     }
 }

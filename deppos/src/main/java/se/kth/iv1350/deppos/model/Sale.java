@@ -18,7 +18,7 @@ public class Sale {
      * Starts a new instance of Sale (a constructor).
      */
     public Sale() {
-        this.saleTime = setTimeOfSale();
+        this.saleTime = LocalTime.now();
         this.totalPrice = 0.0;
         this.totalVAT = 0.0;
         this.totalDiscount = 0.0;
@@ -106,14 +106,5 @@ public class Sale {
             this.totalVAT += item.itemDTO.getItemPrice() * item.itemDTO.getVAT();
         }
         return getSaleDTO();
-    }
-
-    /**
-     * Sets the time of sale.
-     * 
-     * @return The time of sale is returned.
-     * */
-    private LocalTime setTimeOfSale() {
-        return LocalTime.now();
     }
 }

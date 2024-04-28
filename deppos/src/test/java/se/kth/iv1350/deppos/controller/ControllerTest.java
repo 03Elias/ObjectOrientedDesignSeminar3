@@ -4,7 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
+
 import se.kth.iv1350.deppos.model.CashRegister;
+import se.kth.iv1350.deppos.model.Item;
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
@@ -73,13 +77,16 @@ public class ControllerTest {
         controller.addDiscount(0);
     }
 
-        @Test
-        public void testAmountPaid() {
+    @Test
+    public void testAmountPaid() {
         double amountPaid = 100.0;
         double totalVAT = 0.1;
         double totalDiscount = 5;
 
-        SaleDTO saleInfo = new SaleDTO(amountPaid, amountPaid, null, totalVAT, null, totalDiscount);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(new Item(eish.getItemInfo(0), 1));
+
+        SaleDTO saleInfo = new SaleDTO(amountPaid, amountPaid, LocalTime.now(), totalVAT, items, totalDiscount);
         double change = this.cashRegister.calculatedChange(amountPaid, saleInfo);
 
         ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();
@@ -88,9 +95,10 @@ public class ControllerTest {
         eash.updateExternalAccountSystem(saleInfo);
         eish.updateExternalInventorySystem(saleInfo);
 
+        slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change));
         //Example tests for external systems that are not implementet yet
         //assertNotNull(eash.updateExternalAccountSystem(), "ExternalAccountSystemHandler should be updated");
         //assertNotNull(eish.updateExternalInventorySystem(), "ExternalInventorySystemHandler should be updated");
-        //assertNotNull(slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change)));
+        assertNotNull(slh.getSalelog(), "Salelog should be updated");
     }
-    }
+}

@@ -11,12 +11,6 @@ public class ExternalInventorySystemHandler {
         new ItemDTO(30.0, 0.3, "fakeItem3", 2),
     };
 
-    Item[] mockInventory = new Item[]{
-        new Item(mockItems[0], 0),
-        new Item(mockItems[1], 1),
-        new Item(mockItems[2], 2),
-    };
-
     /**
      * A constructor that creates/starts an instance of the External Inventory
      * System Handler that communicates
@@ -33,12 +27,7 @@ public class ExternalInventorySystemHandler {
      *                 so on that is needed to update the inventory.
      */
     public void updateExternalInventorySystem(SaleDTO saleInfo) {
-        for(Item item : saleInfo.getItems()){
-            int itemID = item.getItemDTO().getItemID();
-            int quantityInSale = item.getQuantity();
-            
-            mockInventory[itemID].increaseQuantity(quantityInSale);
-        }
+        //update inventory
     }
 
     /**
