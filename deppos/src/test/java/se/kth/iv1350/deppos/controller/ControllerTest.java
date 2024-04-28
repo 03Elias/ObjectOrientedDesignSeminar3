@@ -9,6 +9,7 @@ import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
 import se.kth.iv1350.deppos.integration.SalelogHandler;
+import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ControllerTest {
@@ -72,8 +73,24 @@ public class ControllerTest {
         controller.addDiscount(0);
     }
 
-    @Test
-    public void testAmountPaid() {
-        //Placeholder test
+        @Test
+        public void testAmountPaid() {
+        double amountPaid = 100.0;
+        double totalVAT = 0.1;
+        double totalDiscount = 5;
+
+        SaleDTO saleInfo = new SaleDTO(amountPaid, amountPaid, null, totalVAT, null, totalDiscount);
+        double change = this.cashRegister.calculatedChange(amountPaid, saleInfo);
+
+        ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();
+        ExternalInventorySystemHandler eish = new ExternalInventorySystemHandler();
+
+        eash.updateExternalAccountSystem(saleInfo);
+        eish.updateExternalInventorySystem(saleInfo);
+
+        //Example tests for external systems that are not implementet yet
+        //assertNotNull(eash.updateExternalAccountSystem(), "ExternalAccountSystemHandler should be updated");
+        //assertNotNull(eish.updateExternalInventorySystem(), "ExternalInventorySystemHandler should be updated");
+        //assertNotNull(slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change)));
     }
-}
+    }
