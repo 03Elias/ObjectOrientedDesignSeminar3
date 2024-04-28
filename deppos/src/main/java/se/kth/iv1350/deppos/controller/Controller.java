@@ -119,7 +119,7 @@ public class Controller {
         eish.updateExternalInventorySystem(saleInfo);
 
         double change = this.cashRegister.calculatedChange(amountPaid, saleInfo);
-        this.cashRegister.updateCashInRegister(amountPaid, saleInfo);
+        this.cashRegister.updateCashInRegister(amountPaid);
 
         slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change));
 

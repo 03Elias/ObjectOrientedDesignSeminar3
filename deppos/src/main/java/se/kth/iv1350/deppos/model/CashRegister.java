@@ -10,8 +10,6 @@ public class CashRegister {
      * The method updates the cash in the register after a sale.
      * 
      * @param amountPaid The amount that the customer paid for the sale.
-     * @param saleInof   The sale information that is needed for updating the cash
-     *                   in the register espacially the total price info.
      */
     public void updateCashInRegister(double amountPaid){
         cashInRegister += amountPaid;
