@@ -49,7 +49,11 @@ public class SaleTest {
 
     @Test
     void testApplyDiscount() {
-        // Placeholder Test
+        SaleDTO saleDTO = mySale.getSaleDTO();
+        assertEquals(0.0, saleDTO.getTotalDiscount(), "The totalDiscount wasn't 0.0");
+        mySale.applyDiscount(13.37);
+        saleDTO = mySale.getSaleDTO();
+        assertEquals(13.37, saleDTO.getTotalDiscount(), "The totalDiscount wasn't 13.37");
     }
 
     @Test
@@ -59,8 +63,9 @@ public class SaleTest {
 
     @Test
     void testCheckID() {
-        // assertEquals(false, mySale.)
-        // mySale.addItem(itemInfo, 1);
+        assertEquals(false, mySale.checkID(1), "Program found ID for item that wasn't added");
+        mySale.addItem(itemInfo, 1);
+        assertEquals(true, mySale.checkID(1), "Program didn't found ID for item that was added");
     }
 
     @Test
