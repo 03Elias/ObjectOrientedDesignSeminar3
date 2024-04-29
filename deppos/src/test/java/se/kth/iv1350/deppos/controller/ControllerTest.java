@@ -1,6 +1,7 @@
 package se.kth.iv1350.deppos.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +9,7 @@ import se.kth.iv1350.deppos.model.CashRegister;
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
-import se.kth.iv1350.deppos.integration.ExternalSalelogHandler;
+import se.kth.iv1350.deppos.integration.SalelogHandler;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ControllerTest {
@@ -17,7 +18,7 @@ public class ControllerTest {
     private ExternalInventorySystemHandler eish;
     private ExternalAccountSystemHandler eash;
     private DiscountHandler dh;
-    private ExternalSalelogHandler slh;
+    private SalelogHandler slh;
 
     @BeforeEach
     public void setup() {
@@ -25,7 +26,7 @@ public class ControllerTest {
         eish = new ExternalInventorySystemHandler();
         eash = new ExternalAccountSystemHandler();
         dh = new DiscountHandler();
-        slh = new ExternalSalelogHandler();
+        slh = new SalelogHandler();
 
         controller = new Controller(eish, eash, dh, slh, cashRegister);
     }
@@ -72,6 +73,7 @@ public class ControllerTest {
         controller.addDiscount(0);
     }
 
+    @Disabled
     @Test
     public void testAmountPaid() {
         //The amountPaid functionality is tested through smaller tests across the classes.

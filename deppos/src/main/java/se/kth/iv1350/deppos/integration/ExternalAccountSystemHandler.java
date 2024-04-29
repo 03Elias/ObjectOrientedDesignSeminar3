@@ -25,6 +25,11 @@ public class ExternalAccountSystemHandler {
         totalAmountOfMoney += saleInfo.getTotalPrice() - saleInfo.getTotalDiscount();
     }
 
+    /**
+     * Retrives the total amount of money in the account.
+     * 
+     * @return The total amount of money in the account.
+     */
     public double getTotalAmountOfMoney() {
         return totalAmountOfMoney;
     }

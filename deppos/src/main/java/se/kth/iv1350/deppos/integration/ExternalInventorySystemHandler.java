@@ -5,8 +5,13 @@ import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ExternalInventorySystemHandler {
-    ItemDTO[] items;
-    int[] inventoryQuantities;
+    //Mockdata
+    ItemDTO[] items  = new ItemDTO[]{
+        new ItemDTO(10.0, 0.1, "fakeItem1", 0),
+        new ItemDTO(20.0, 0.2, "fakeItem2", 1),
+        new ItemDTO(30.0, 0.3, "fakeItem3", 2),
+    };
+    int[] inventoryQuantities = new int[]{3, 4, 5};
 
     /**
      * A constructor that creates/starts an instance of the External Inventory
@@ -14,14 +19,6 @@ public class ExternalInventorySystemHandler {
      * with the External Inventory System.
      */
     public ExternalInventorySystemHandler() {
-        //Mockdata
-        items = new ItemDTO[]{
-            new ItemDTO(10.0, 0.1, "fakeItem1", 0),
-            new ItemDTO(20.0, 0.2, "fakeItem2", 1),
-            new ItemDTO(30.0, 0.3, "fakeItem3", 2),
-        };
-
-        inventoryQuantities = new int[]{3, 4, 5};
     }
 
     /**

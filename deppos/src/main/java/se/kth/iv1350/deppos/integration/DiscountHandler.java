@@ -4,22 +4,17 @@ import se.kth.iv1350.deppos.model.Item;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class DiscountHandler {
-    private double currentStoreDiscount;
-    private int[] vipCustomerIDs;
-    private double vipDiscount;
-    private double[][] itemDiscounts;
-    private double discount;
+    //Mockdata, will eventually be imported from an external source.
+    private double currentStoreDiscount = 0.05;;
+    private int[] customerIDs = new int[]{1};
+    private double customerDiscount = 0.1;
+    private double[][] itemDiscounts = new double[][]{{0,0.1}};
 
     /**
      * Starts an new instance of DiscountHandler.
      * 
      */
     public DiscountHandler() {
-        //Mockdata, will eventually be imported from an external source.
-        this.currentStoreDiscount = 0.05;
-        this.vipCustomerIDs = new int[]{1};
-        this.vipDiscount = 0.1;
-        this.itemDiscounts = new double[][]{{0,0.1}};
     }
 
     /**
@@ -34,18 +29,20 @@ public class DiscountHandler {
      * @return The discount amount for the sale.
      */
     public double getDiscount(int customerID, SaleDTO saleDTO) {
+        double discount = 0.0;
         double totalSalePrice = saleDTO.getTotalPrice();
-
-        //Checks each item for a discount.
-        for(Item item : saleDTO.getItems()) {
+    
+        // Calculate the total discount for items
+        for (Item item : saleDTO.getItems()) {
             discount += getItemDiscount(item);
         }
-
-        //If the customer is a vip and the vip discount is larger than the current store discount, use the vip discount.
-        discount += (totalSalePrice - discount) * (vipDiscount > currentStoreDiscount && isVipCustomer(customerID) ? vipDiscount : currentStoreDiscount);
-
+    
+        // Calculate the customer discount
+        discount += (totalSalePrice - discount) * (customerDiscount > currentStoreDiscount && isCustomer(customerID) ? customerDiscount : currentStoreDiscount);
+    
         return discount;
     }
+    
 
     /**
      * Retrives the discount for an item.
@@ -75,8 +72,8 @@ public class DiscountHandler {
      * 
      * @return If the customer is a vipCustomer or not.
      */
-    private boolean isVipCustomer(int customerID) {
-        for(int id : vipCustomerIDs) {
+    private boolean isCustomer(int customerID) {
+        for(int id : customerIDs) {
             if(id == customerID) {
                 return true;
             }
