@@ -3,6 +3,7 @@ package se.kth.iv1350.deppos.integration;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ExternalAccountSystemHandler {
+    private int totalAmountOfMoney;
 
     /**
      * A constructor that creates/starts an instance of the External Account System
@@ -10,7 +11,8 @@ public class ExternalAccountSystemHandler {
      * with the External Account System.
      */
     public ExternalAccountSystemHandler() {
-
+        //Mockdata
+        totalAmountOfMoney = 135094;
     }
 
     /**
@@ -20,6 +22,10 @@ public class ExternalAccountSystemHandler {
      *                 etc that is needed to update the account.
      */
     public void updateExternalAccountSystem(SaleDTO saleInfo) {
-        
+        totalAmountOfMoney += saleInfo.getTotalPrice() - saleInfo.getTotalDiscount();
+    }
+
+    public double getTotalAmountOfMoney() {
+        return totalAmountOfMoney;
     }
 }

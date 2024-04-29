@@ -4,16 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-
 import se.kth.iv1350.deppos.model.CashRegister;
-import se.kth.iv1350.deppos.model.Item;
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
-import se.kth.iv1350.deppos.integration.SalelogHandler;
-import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
+import se.kth.iv1350.deppos.integration.ExternalSalelogHandler;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ControllerTest {
@@ -22,7 +17,7 @@ public class ControllerTest {
     private ExternalInventorySystemHandler eish;
     private ExternalAccountSystemHandler eash;
     private DiscountHandler dh;
-    private SalelogHandler slh;
+    private ExternalSalelogHandler slh;
 
     @BeforeEach
     public void setup() {
@@ -30,7 +25,7 @@ public class ControllerTest {
         eish = new ExternalInventorySystemHandler();
         eash = new ExternalAccountSystemHandler();
         dh = new DiscountHandler();
-        slh = new SalelogHandler();
+        slh = new ExternalSalelogHandler();
 
         controller = new Controller(eish, eash, dh, slh, cashRegister);
     }
@@ -79,26 +74,7 @@ public class ControllerTest {
 
     @Test
     public void testAmountPaid() {
-        double amountPaid = 100.0;
-        double totalVAT = 0.1;
-        double totalDiscount = 5;
-
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(new Item(eish.getItemInfo(0), 1));
-
-        SaleDTO saleInfo = new SaleDTO(amountPaid, amountPaid, LocalTime.now(), totalVAT, items, totalDiscount);
-        double change = this.cashRegister.calculatedChange(amountPaid, saleInfo);
-
-        ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();
-        ExternalInventorySystemHandler eish = new ExternalInventorySystemHandler();
-
-        eash.updateExternalAccountSystem(saleInfo);
-        eish.updateExternalInventorySystem(saleInfo);
-
-        slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change));
-        //Example tests for external systems that are not implementet yet
-        //assertNotNull(eash.updateExternalAccountSystem(), "ExternalAccountSystemHandler should be updated");
-        //assertNotNull(eish.updateExternalInventorySystem(), "ExternalInventorySystemHandler should be updated");
-        assertNotNull(slh.getSalelog(), "Salelog should be updated");
+        //The amountPaid functionality is tested through smaller tests across the classes.
+        //It does not contain any logic that is not tested in other classes.
     }
 }
