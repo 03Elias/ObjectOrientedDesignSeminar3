@@ -6,18 +6,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemDTOTest {
     private static ItemDTO item;
+    private static String itemName;
     private static double itemPrice;
-    private static double VAT;
+    private static double vat;
     private static String itemDescription;
     private static int itemID;
 
     @BeforeAll
     public static void setup() {
+        itemName = "TestItem";
         itemPrice = 50.0;
-        VAT = 0.12;
-        itemDescription = "TestItem";
+        vat = 0.12;
+        itemDescription = "TestItemDescription";
         itemID = 1;
-        item = new ItemDTO(itemPrice, VAT, itemDescription, itemID);
+        item = new ItemDTO(itemName, itemPrice, vat, itemDescription, itemID);
     }
 
     @Test
@@ -27,9 +29,9 @@ public class ItemDTOTest {
     }
 
     @Test
-    public void testGetVAT() {
-        double vatGiven = item.getVAT();
-        assertEquals(VAT, vatGiven);
+    public void testGetVat() {
+        double vatGiven = item.getItemVat();
+        assertEquals(vat, vatGiven);
     }
 
     @Test
@@ -39,8 +41,8 @@ public class ItemDTOTest {
     }
 
     @Test
-    public void testGetItemID() {
-        int idGiven = item.getItemID();
+    public void testGetItemId() {
+        int idGiven = item.getItemId();
         assertEquals(itemID, idGiven);
     }
 }

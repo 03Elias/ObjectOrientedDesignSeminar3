@@ -1,16 +1,15 @@
 package se.kth.iv1350.deppos.model;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class Sale {
-    private LocalTime saleTime;
-    private double runningTotal;
+    private LocalDateTime saleTime;
     private double totalPrice;
-    private double totalVAT;
+    private double totalVat;
     private double totalDiscount;
     private ArrayList<Item> items;
 
@@ -18,9 +17,9 @@ public class Sale {
      * Starts a new instance of Sale (a constructor).
      */
     public Sale() {
-        this.saleTime = LocalTime.now();
+        this.saleTime = LocalDateTime.now();
         this.totalPrice = 0.0;
-        this.totalVAT = 0.0;
+        this.totalVat = 0.0;
         this.totalDiscount = 0.0;
         this.items = new ArrayList<>();
     }
@@ -32,12 +31,12 @@ public class Sale {
      * @param id The item identifier.
      * @return If the item is present in the current sale or not.
      */
-    public boolean checkID(int id) {
+    public ItemDTO checkId(int id) {
         for(Item item : items) {
-            if(item.itemDTO.getItemID() == id) {
-                return true;
+            if(item.itemDTO.getItemId() == id) {
+                return item.itemDTO;
             }
-    } return false;
+    } return null;
 }
 
     /**
@@ -50,7 +49,8 @@ public class Sale {
     public SaleDTO addItem(ItemDTO itemInfo, int quantity) {
         Item item = new Item(itemInfo, quantity);
         this.items.add(item);
-        this.runningTotal += item.getTotalPrice();
+        this.totalPrice += item.getTotalPrice();
+        this.totalVat += item.getTotalVat();
         return getSaleDTO();
     }
 
@@ -65,8 +65,10 @@ public class Sale {
     public SaleDTO increaseItemQuantity(int id, int quantityToAdd) {
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
-            if (item.itemDTO.getItemID() == id) {
+            if (item.itemDTO.getItemId() == id) {
                 item = item.increaseQuantity(quantityToAdd);
+                this.totalPrice += item.getItemDTO().getItemPrice() * quantityToAdd;
+                this.totalVat += (item.getItemDTO().getItemPrice() - (item.getItemDTO().getItemPrice() / (1 + item.getItemDTO().getItemVat()))) * quantityToAdd;
                 items.set(i, item);
             }
         }
@@ -79,7 +81,7 @@ public class Sale {
      * @return The SaleDTO of the current sale.
      */
     public SaleDTO getSaleDTO() {
-        return new SaleDTO(this.runningTotal, this.totalPrice, this.saleTime, this.totalVAT, this.items, this.totalDiscount);
+        return new SaleDTO(this.totalPrice, this.totalVat, this.saleTime, this.items, this.totalDiscount);
     }
 
     /**
@@ -91,20 +93,6 @@ public class Sale {
      */
     public SaleDTO applyDiscount(double discountAmount) {
         this.totalDiscount = discountAmount;
-        return getSaleDTO();
-    }
-
-    /**
-     * Ends the current sale.
-     * 
-     * @return The finalized SaleDTO containing all the information regarding the
-     *         ended sale.
-     */
-    public SaleDTO endSale() {
-        for(Item item : items) {
-            this.totalPrice += item.getTotalPrice();
-            this.totalVAT += item.itemDTO.getItemPrice() * item.itemDTO.getVAT();
-        }
         return getSaleDTO();
     }
 }

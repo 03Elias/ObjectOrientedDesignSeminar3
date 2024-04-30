@@ -1,8 +1,9 @@
 package se.kth.iv1350.deppos.model.dto;
 
 public class ItemDTO {
+    private String itemName;
     private double itemPrice;
-    private double VAT;
+    private double itemVat;
     private String itemDescription;
     private int itemID; // Maybe better if string?
 
@@ -10,16 +11,27 @@ public class ItemDTO {
      * A constructor that creates a new instance of the ItemDTO which contains all
      * the information regarding an item.
      * 
+     * @param itemName        The name of the item.
      * @param itemPrice       The price of an item.
-     * @param VAT             The VAT (Value added tax) of the item.
+     * @param vat             The VAT (Value added tax) of the item.
      * @param itemDescription The description of the item.
      * @param itemID          The identifier of the item.
      */
-    public ItemDTO(double itemPrice, double VAT, String itemDescription, int itemID) {
+    public ItemDTO(String itemName, double itemPrice, double vat, String itemDescription, int itemID) {
+        this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.VAT = VAT;
+        this.itemVat = vat;
         this.itemDescription = itemDescription;
         this.itemID = itemID;
+    }
+
+    /**
+     * Gets the name of the item.
+     * 
+     * @return The name of the item is returned.
+     */
+    public String getItemName() {
+        return itemName;
     }
 
     /**
@@ -37,8 +49,8 @@ public class ItemDTO {
      * 
      * @return The VAT is returned of the item.
      */
-    public double getVAT() {
-        return VAT;
+    public double getItemVat() {
+        return itemVat;
     }
 
     /**
@@ -55,7 +67,7 @@ public class ItemDTO {
      * 
      * @return The indetifier of the item is returned.
      */
-    public int getItemID() {
+    public int getItemId() {
         return itemID;
     }
 }

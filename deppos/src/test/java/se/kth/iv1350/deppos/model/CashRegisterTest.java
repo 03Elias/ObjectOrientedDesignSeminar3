@@ -14,7 +14,7 @@ public class CashRegisterTest {
     @BeforeEach
     public void setup() {
         cashRegister = new CashRegister();
-        saleInfo = new SaleDTO(33.0, 33.0, null, 3.0, null, 5.0);
+        saleInfo = new SaleDTO(33.0, 3.0, null, null, 5.0);
     }
 
     @Test

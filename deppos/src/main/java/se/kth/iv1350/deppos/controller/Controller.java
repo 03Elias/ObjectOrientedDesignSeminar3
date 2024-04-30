@@ -69,11 +69,12 @@ public class Controller {
      *         and the updated total amount of the sale, etc.
      */
     public SaleDTO enterItem(int id, int quantity) {
-        if(sale.checkID(id)) {
+        ItemDTO itemInfo = sale.checkId(id);
+        if(itemInfo != null) {
             sale.increaseItemQuantity(id, quantity);
         }
         else {
-            ItemDTO itemInfo = eish.getItemInfo(id);
+            itemInfo = eish.getItemInfo(id);
             sale.addItem(itemInfo, quantity);
         }
         return sale.getSaleDTO();
@@ -86,7 +87,7 @@ public class Controller {
      * @return A SaleDTO containing all information regarding the ended sale.
      */
     public SaleDTO endSale() {
-        return sale.endSale();
+        return sale.getSaleDTO();
     }
 
     /**
@@ -109,20 +110,22 @@ public class Controller {
      * Also adds a sale to the salelog.
      * 
      * @param amountPaid The amount that the customer paid.
-     * @return A updated SaleDTO containing the amoun paid among other sale
-     *         information regarding the pursache.
+     * 
+     * @return The receipt of the sale.
      */
-    public SaleDTO amountPaid(double amountPaid) {
+    public ReceiptDTO amountPaid(double amountPaid) {
         SaleDTO saleInfo = sale.getSaleDTO();
 
         eash.updateExternalAccountSystem(saleInfo);
         eish.updateExternalInventorySystem(saleInfo);
 
+
         double change = this.cashRegister.calculatedChange(amountPaid, saleInfo);
         this.cashRegister.updateCashInRegister(amountPaid);
 
-        slh.addSale(new ReceiptDTO(saleInfo, amountPaid, change));
+        ReceiptDTO receipt = new ReceiptDTO(saleInfo, amountPaid, change);
+        slh.addSale(receipt);
 
-        return sale.getSaleDTO();
+        return receipt;
     }
 }

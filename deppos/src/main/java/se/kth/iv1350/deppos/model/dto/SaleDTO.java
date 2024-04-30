@@ -1,37 +1,49 @@
 package se.kth.iv1350.deppos.model.dto;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import se.kth.iv1350.deppos.model.Item;
 
 public class SaleDTO {
 
-    private LocalTime saleTime;
-    private double runningTotal;
+    private LocalDateTime saleTime;
     private double totalPrice;
-    private double totalVAT;
-    private ArrayList<Item> items;
+    private double totalVat;
+    private Map<Integer, ItemDTO> itemMap;
+    private Map<Integer, Integer> itemQuantityMap;
+    private Map<Integer, Double> itemPriceMap;
     private double totalDiscount;
 
     /**
      * Constructor that creates a new instance of a SaleDTO (Sale Data Transfer
      * Object) which contains all the necessary information for the sale.
      * 
-     * @param runningTotal  The running total of the sale.
-     * @param totalPrice    The total price of the sale.
+     * @param totalPrice    The total price at the end of the sale.
+     * @param totalVat      The total VAT at the end of the sale.
      * @param timeOfSale    The time of sale.
-     * @param totalVAT      The total VAT.
      * @param items         The total items in the SaleDTO.
      * @param totalDiscount The total discount for this current sale.
      */
-    public SaleDTO(double runningTotal, double totalPrice, LocalTime saleTime, double totalVAT, ArrayList<Item> items, double totalDiscount) {
-        this.runningTotal = runningTotal;
+    public SaleDTO(double totalPrice, double totalVat, LocalDateTime saleTime, ArrayList<Item> items, double totalDiscount) {
         this.totalPrice = totalPrice;
         this.saleTime = saleTime;
-        this.totalVAT = totalVAT;
-        this.items = items;
+        this.totalVat = totalVat;
         this.totalDiscount = totalDiscount;
+        this.itemMap = new HashMap<>();
+        this.itemQuantityMap = new HashMap<>();
+        this.itemPriceMap = new HashMap<>();
+
+        if(items != null) {
+            for(Item item : items) {
+                ItemDTO itemDTO = item.getItemDTO();
+                itemMap.put(itemDTO.getItemId(), itemDTO);
+                itemQuantityMap.put(itemDTO.getItemId(), item.getQuantity());
+                itemPriceMap.put(itemDTO.getItemId(), itemDTO.getItemPrice());
+            }
+        }
     }
 
     /**
@@ -39,17 +51,8 @@ public class SaleDTO {
      * 
      * @return The time the current sale was taken place is returned.
      */
-    public LocalTime getSaleTime() {
+    public LocalDateTime getSaleTime() {
         return saleTime;
-    }
-
-    /**
-     * Gets the running total of the current sale.
-     * 
-     * @return The running total of the current sale is returned.
-     */
-    public double getRunningTotal() {
-        return runningTotal;
     }
 
     /**
@@ -64,10 +67,28 @@ public class SaleDTO {
     /**
      * Gets the items in the current sale.
      * 
-     * @return The items in the current sale is returned as an item array.
+     * @return The items in the current sale is returned.
      */
-    public ArrayList<Item> getItems() {
-        return items;
+    public Map<Integer, ItemDTO> getItemMap() {
+        return itemMap;
+    }
+
+    /**
+     * Gets the quantities of the items in the current sale.
+     * 
+     * @return The quantities of the items in the current sale is returned as an
+     */
+    public Map<Integer, Integer> getItemQuantityMap() {
+        return itemQuantityMap;
+    }
+
+    /**
+     * Gets the prices of the items in the current sale.
+     * 
+     * @return The prices of the items in the current sale is returned as a Map
+     */
+    public Map<Integer, Double> getItemPriceMap() {
+        return itemPriceMap;
     }
 
     /**
@@ -84,7 +105,7 @@ public class SaleDTO {
      * 
      * @return Gives the VAT of the current sale.
      */
-    public double getTotalVAT() {
-        return totalVAT;
+    public double getTotalVat() {
+        return totalVat;
     }
 }

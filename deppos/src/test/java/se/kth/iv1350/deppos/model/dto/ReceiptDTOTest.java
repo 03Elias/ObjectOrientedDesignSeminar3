@@ -6,15 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import se.kth.iv1350.deppos.model.Item;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ReceiptDTOTest {
     private static ReceiptDTO receipt;
-    private static LocalTime saleTime;
-    private static double runningTotal;
+    private static LocalDateTime saleTime;
     private static double totalPrice;
-    private static double totalVAT;
+    private static double totalVat;
     private static ArrayList<Item> items;
     private static double totalDiscount;
     private static SaleDTO saleDTO;
@@ -23,15 +22,14 @@ public class ReceiptDTOTest {
 
     @BeforeAll
     public static void setup() {
-        saleTime = LocalTime.now();
-        runningTotal = 33.0;
+        saleTime = LocalDateTime.now();
         totalPrice = 33.0;
-        totalVAT = 3.0;
+        totalVat = 3.0;
         items = new ArrayList<>();
         totalDiscount = 5.0;
         amountPaid = 33.0;
         change = 0.0;
-        saleDTO = new SaleDTO(runningTotal, totalPrice, saleTime, totalVAT, items, totalDiscount);
+        saleDTO = new SaleDTO(totalPrice, totalVat, saleTime, items, totalDiscount);
         receipt = new ReceiptDTO(saleDTO, amountPaid, change);
     }
 

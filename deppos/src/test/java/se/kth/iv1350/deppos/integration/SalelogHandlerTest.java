@@ -1,6 +1,6 @@
 package se.kth.iv1350.deppos.integration;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class SalelogHandlerTest {
     @BeforeEach
     public void setup() {
         slh = new SalelogHandler();
-        saleDTO = new SaleDTO(33.0, 33.0, LocalTime.now(), 3.0, null, 5.0);
+        saleDTO = new SaleDTO(33.0, 3.0, LocalDateTime.now(), null, 5.0);
         receiptDTO = new ReceiptDTO(saleDTO, 40.0, 7.0);
     }
 

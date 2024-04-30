@@ -56,15 +56,18 @@ public class Item {
      * @return The total price is returned.
      */
     public double getTotalPrice() {
-        return this.itemDTO.getItemPrice() * (1 + this.itemDTO.getVAT()) * this.quantity;
+        double itemPrice = this.itemDTO.getItemPrice();
+        return itemPrice * this.quantity;
     }
 
     /**
-     * Gets the total VAT of the item.
+     * Gets the total Vat of the item.
      * 
-     * @return The total VAT is returned.
+     * @return The total Vat is returned.
      * */
-    public double getTotalVAT() {
-        return this.itemDTO.getItemPrice() * this.itemDTO.getVAT() * this.quantity;
+    public double getTotalVat() {
+        double itemPrice = this.itemDTO.getItemPrice();
+        double itemVat = this.itemDTO.getItemVat();
+        return (itemPrice * quantity) - (itemPrice / (1 + itemVat)) * quantity;
     }
 }

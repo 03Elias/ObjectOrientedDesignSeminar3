@@ -1,20 +1,28 @@
 package se.kth.iv1350.deppos.integration;
 
-import se.kth.iv1350.deppos.model.Item;
+import java.util.HashMap;
+import java.util.Map;
+
+import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class DiscountHandler {
     //Mockdata, will eventually be imported from an external source.
-    private double currentStoreDiscount = 0.05;;
-    private int[] customerIDs = new int[]{1};
-    private double customerDiscount = 0.1;
-    private double[][] itemDiscounts = new double[][]{{0,0.1}};
+    private double currentStoreDiscount;
+    private int[] customerIds;
+    private double customerDiscount;
+    private Map<Integer, Double> itemDiscounts = new HashMap<>();
+
 
     /**
      * Starts an new instance of DiscountHandler.
      * 
      */
     public DiscountHandler() {
+        currentStoreDiscount = 0.05;
+        customerIds = new int[]{1};
+        customerDiscount = 0.1;
+        itemDiscounts.put(0, 0.1);
     }
 
     /**
@@ -33,8 +41,9 @@ public class DiscountHandler {
         double totalSalePrice = saleDTO.getTotalPrice();
     
         // Calculate the total discount for items
-        for (Item item : saleDTO.getItems()) {
-            discount += getItemDiscount(item);
+        for (ItemDTO itemDTO : saleDTO.getItemMap().values()) {
+            int quantity = saleDTO.getItemQuantityMap().get(itemDTO.getItemId());
+            discount += getItemDiscount(itemDTO) * quantity;
         }
     
         // Calculate the customer discount
@@ -47,21 +56,20 @@ public class DiscountHandler {
     /**
      * Retrives the discount for an item.
      * 
-     * @param itemID
-     * @param quantity
+     * @param itemDTO The DTO of the item that is needed to determine the discount.
+     * @param quantity The quantity of the item.
      * 
      * @return The discount for the item.
      * 
      */
-    private double getItemDiscount(Item item) {
+    private double getItemDiscount(ItemDTO itemDTO) {
         double itemDiscount = 0.0;
-
-        for(int i = 0; i < itemDiscounts.length; i++) {
-            if(item.getItemDTO().getItemID() == itemDiscounts[i][0]) {
-                itemDiscount = item.getTotalPrice() * itemDiscounts[i][1];
-            }
+    
+        if (itemDiscounts.containsKey(itemDTO.getItemId())) {
+            double discountRate = itemDiscounts.get(itemDTO.getItemId());
+            itemDiscount = itemDTO.getItemPrice() * discountRate;
         }
-
+    
         return itemDiscount;
     }
 
@@ -73,7 +81,7 @@ public class DiscountHandler {
      * @return If the customer is a vipCustomer or not.
      */
     private boolean isCustomer(int customerID) {
-        for(int id : customerIDs) {
+        for(int id : customerIds) {
             if(id == customerID) {
                 return true;
             }

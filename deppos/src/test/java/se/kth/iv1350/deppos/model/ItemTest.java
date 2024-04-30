@@ -4,18 +4,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
-import se.kth.iv1350.deppos.model.dto.ItemDTO;
+import se.kth.iv1350.deppos.integration.MockData;
 
 class ItemTest {
     private Item item;
-    private ItemDTO itemInfo;
-    private int quantity;
+    private double itemPrice;
+    private double itemVat;
 
     @BeforeEach
     public void setup() {
-        itemInfo = new ItemDTO(33.0, 0.12, "TestItem", 1);
-        quantity = 1;
-        item = new Item(itemInfo, quantity);
+        item = MockData.getMockItems()[0];
+        itemPrice = item.getItemDTO().getItemPrice();
+        itemVat = item.getItemDTO().getItemVat();
     }
 
     @Test
@@ -27,19 +27,18 @@ class ItemTest {
 
     @Test
     public void testGetTotalPrice() { 
-        double totalPrice = 36.96;
-        assertEquals(totalPrice, item.getTotalPrice());
+        assertEquals(itemPrice, item.getTotalPrice(), "Total price should be " + itemPrice + " since we only have 1 item");
         item.increaseQuantity(3);
-        totalPrice = 147.84;
-        assertEquals(totalPrice, item.getTotalPrice());
+        double totalPrice = itemPrice * 4;
+        assertEquals(totalPrice, item.getTotalPrice(), "Total price should be " + totalPrice + " since we have 4 items");
     }
 
     @Test
-    public void testGetTotalVAT() { 
-        double totalVAT = 3.96;
-        assertEquals(totalVAT, item.getTotalVAT());
+    public void testGetTotalVat() { 
+        double totalVat = itemPrice - (itemPrice / (1 + itemVat));
+        assertEquals(totalVat, item.getTotalVat());
         item.increaseQuantity(3);
-        totalVAT = 15.84;
-        assertEquals(totalVAT, item.getTotalVAT());
+        totalVat += totalVat * 3;
+        assertEquals(totalVat, item.getTotalVat());
     }
 }

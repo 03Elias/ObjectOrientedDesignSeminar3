@@ -1,17 +1,12 @@
 package se.kth.iv1350.deppos.integration;
 
-import se.kth.iv1350.deppos.model.Item;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ExternalInventorySystemHandler {
     //Mockdata
-    ItemDTO[] items  = new ItemDTO[]{
-        new ItemDTO(10.0, 0.1, "fakeItem1", 0),
-        new ItemDTO(20.0, 0.2, "fakeItem2", 1),
-        new ItemDTO(30.0, 0.3, "fakeItem3", 2),
-    };
-    int[] inventoryQuantities = new int[]{3, 4, 5};
+    private ItemDTO[] items = MockData.getMockItemDTOs();
+    private int[] inventoryQuantities = MockData.getMockInventoryQuantities();
 
     /**
      * A constructor that creates/starts an instance of the External Inventory
@@ -28,11 +23,11 @@ public class ExternalInventorySystemHandler {
      *                 so on that is needed to update the inventory.
      */
     public void updateExternalInventorySystem(SaleDTO saleInfo) {
-        for(Item item : saleInfo.getItems()){
-            int itemID = item.getItemDTO().getItemID();
-            int quantityInSale = item.getQuantity();
-            
-            inventoryQuantities[itemID] -= quantityInSale;
+        for (ItemDTO itemDTO : saleInfo.getItemMap().values()) {
+            int itemId = itemDTO.getItemId();
+            int quantityInSale = saleInfo.getItemQuantityMap().get(itemId);
+
+            inventoryQuantities[itemId] -= quantityInSale;
         }
     }
 
@@ -47,7 +42,7 @@ public class ExternalInventorySystemHandler {
     public ItemDTO getItemInfo(int id){
         //fetch item info from external inventory
         for(ItemDTO item : items){
-            if(item.getItemID() == id){
+            if(item.getItemId() == id){
                 return item;
             }
         }
