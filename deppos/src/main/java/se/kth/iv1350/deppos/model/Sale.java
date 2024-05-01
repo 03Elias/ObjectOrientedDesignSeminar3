@@ -63,17 +63,31 @@ public class Sale {
      *         current sale.
      */
     public SaleDTO increaseItemQuantity(int id, int quantityToAdd) {
-        for (int i = 0; i < items.size(); i++) {
-            Item item = items.get(i);
+        Item item = findItemById(id);
+        double previousPrice = item.getTotalPrice();
+        double previousVat = item.getTotalVat();
+
+        item.increaseQuantity(quantityToAdd);
+        this.totalPrice += item.getTotalPrice() - previousPrice;
+        this.totalVat += item.getTotalVat() - previousVat;
+
+        return getSaleDTO();
+    }
+
+    /**
+     * Retrives an item from the current sale based on the item identifier.
+     * 
+     * @param id The identifier of the item.
+     * @return The item is returned.
+     * 
+     */
+    private Item findItemById(int id) {
+        for (Item item : items) {
             if (item.itemDTO.getItemId() == id) {
-                item = item.increaseQuantity(quantityToAdd);
-                this.totalPrice += item.getItemDTO().getItemPrice() * quantityToAdd;
-                this.totalVat += (item.getItemDTO().getItemPrice()
-                        - (item.getItemDTO().getItemPrice() / (1 + item.getItemDTO().getItemVat()))) * quantityToAdd;
-                items.set(i, item);
+                return item;
             }
         }
-        return getSaleDTO();
+        return null;
     }
 
     /**
