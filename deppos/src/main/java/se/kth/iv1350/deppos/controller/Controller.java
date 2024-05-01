@@ -22,6 +22,7 @@ public class Controller {
      * Constructor for Controller, so creates instance of Controller so it is able
      * to communicate with them later on.
      * 
+     * @param cashRegister is an instance of the object cashRegister.
      * @param eish is an instance of the object ExternalInventorySystemHandler.
      * @param eash is an instance of the object ExternalAccountSystemHandler.
      * @param dh   is an instance of the object DiscountHandler.

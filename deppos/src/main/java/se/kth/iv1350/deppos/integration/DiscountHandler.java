@@ -26,7 +26,7 @@ public class DiscountHandler {
     }
 
     /**
-     * Retrives the discount for the customer of a specific sale by communication
+     * Retrives the discount for the customer of a specific sale by communicating
      * with the discount database.
      * 
      * @param customerID The customer identifier so that the right discount is
@@ -57,7 +57,6 @@ public class DiscountHandler {
      * Retrives the discount for an item.
      * 
      * @param itemDTO The DTO of the item that is needed to determine the discount.
-     * @param quantity The quantity of the item.
      * 
      * @return The discount for the item.
      * 

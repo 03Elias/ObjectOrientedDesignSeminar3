@@ -32,17 +32,19 @@ public class Sale {
      * @return If the item is present in the current sale or not.
      */
     public ItemDTO checkId(int id) {
-        for(Item item : items) {
-            if(item.itemDTO.getItemId() == id) {
+        for (Item item : items) {
+            if (item.itemDTO.getItemId() == id) {
                 return item.itemDTO;
             }
-    } return null;
-}
+        }
+        return null;
+    }
 
     /**
      * Adds an item to the current sale.
      * 
-     * @param itemInfo information about the item.
+     * @param itemInfo Information about the item.
+     * @param quantity The quantity of the desired item.
      * @return The updated sale with the SaleDTO.
      */
 
@@ -68,7 +70,8 @@ public class Sale {
             if (item.itemDTO.getItemId() == id) {
                 item = item.increaseQuantity(quantityToAdd);
                 this.totalPrice += item.getItemDTO().getItemPrice() * quantityToAdd;
-                this.totalVat += (item.getItemDTO().getItemPrice() - (item.getItemDTO().getItemPrice() / (1 + item.getItemDTO().getItemVat()))) * quantityToAdd;
+                this.totalVat += (item.getItemDTO().getItemPrice()
+                        - (item.getItemDTO().getItemPrice() / (1 + item.getItemDTO().getItemVat()))) * quantityToAdd;
                 items.set(i, item);
             }
         }
@@ -87,7 +90,8 @@ public class Sale {
     /**
      * Applies the discount on the current sale based on the discount info.
      * 
-     * @param discountAmount Gives the discount information based on the current sale.
+     * @param discountAmount Gives the discount information based on the current
+     *                       sale.
      * @return The applicable discount is returned in the SaleDTO which contains the
      *         Sale information.
      */

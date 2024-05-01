@@ -11,6 +11,7 @@ public class ReceiptDTO {
      * @param saleInfo   The information regarding the sale such as items, time of
      *                   sale, etc
      * @param amountPaid The amount that the customer paid.
+     * 
      * @param change     The change that the cashier returned to the customer in
      *                   case of overpaying.
      */

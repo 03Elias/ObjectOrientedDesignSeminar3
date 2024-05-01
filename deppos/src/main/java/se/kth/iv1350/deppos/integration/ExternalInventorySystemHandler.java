@@ -17,7 +17,7 @@ public class ExternalInventorySystemHandler {
     }
 
     /**
-     * updates the external inventory system after a sale has occured.
+     * Updates the external inventory system after a sale has occured.
      * 
      * @param saleInfo The sale information that contains amount of items sold and
      *                 so on that is needed to update the inventory.
@@ -30,6 +30,12 @@ public class ExternalInventorySystemHandler {
             inventoryQuantities[itemId] -= quantityInSale;
         }
     }
+
+    /**
+     * Checks the external inventory system for a certian quantity of an item.  
+     * @param id Identifies the desired item. 
+     * @return The quantity of the desired item that is stored in the external inventory system.
+     */
 
     public int checkInventoryQuantity(int id){
         return inventoryQuantities[id];
