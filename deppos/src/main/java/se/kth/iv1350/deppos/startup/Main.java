@@ -25,6 +25,9 @@ public class Main {
         Controller controller = new Controller(eish, eash, dh, slh, cr);
 
         View retailStoreView = new View(controller);
-        retailStoreView.sampleRun();
+
+        if(args != null) {
+            retailStoreView.sampleRun();
+        }
     }
 }

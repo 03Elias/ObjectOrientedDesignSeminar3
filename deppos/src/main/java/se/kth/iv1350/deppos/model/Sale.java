@@ -32,13 +32,12 @@ public class Sale {
      * @return If the item is present in the current sale or not.
      */
     public ItemDTO checkId(int id) {
-        for (Item item : items) {
-            if (item.itemDTO.getItemId() == id) {
+        for(Item item : items) {
+            if(item.itemDTO.getItemId() == id) {
                 return item.itemDTO;
             }
-        }
-        return null;
-    }
+    } return null;
+}
 
     /**
      * Adds an item to the current sale.

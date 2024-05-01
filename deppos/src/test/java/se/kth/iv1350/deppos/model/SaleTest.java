@@ -19,7 +19,7 @@ public class SaleTest {
     }
 
     @Test
-    void testAddItem() {
+    void testAddItemIntoCurrentSale() {
         assertEquals(0, mySale.getSaleDTO().getItemMap().size());
         SaleDTO saleInfo = mySale.addItem(itemInfo, 1);
         assertEquals(itemInfo, saleInfo.getItemMap().get(itemInfo.getItemId()));
@@ -27,7 +27,7 @@ public class SaleTest {
 
 
     @Test
-    void testAddDuplicateItem() {
+    void testIncreasingItemQuantityOfSaleItem() {
         assertEquals(0, mySale.getSaleDTO().getItemMap().size());
         SaleDTO saleInfo = mySale.addItem(itemInfo, 1);
         assertEquals(1, saleInfo.getItemQuantityMap().get(0), "Item quantity should be 1");
@@ -36,7 +36,7 @@ public class SaleTest {
     }
 
     @Test
-    void testGetSaleDTO() {
+    void testThatGetSaleDTOReturnsCorrectVariables() {
         mySale.addItem(itemInfo, 2);
         double priceOfItems = itemInfo.getItemPrice() * 2;
         SaleDTO saleDTO = mySale.getSaleDTO();
@@ -59,19 +59,9 @@ public class SaleTest {
     }
 
     @Test
-    void testEndSale() {
-        // Placeholder Test
-    }
-
-    @Test
-    void testCheckIfItemID() {
-        assertEquals(false, mySale.checkId(1), "Program found ID for item that wasn't added");
+    void testCheckIfItemIDIsAlreadyInCurrentSale() {
+        assertEquals(false, mySale.checkId(0), "Program found ID for item that wasn't added");
         mySale.addItem(itemInfo, 1);
-        assertEquals(true, mySale.checkId(1), "Program didn't found ID for item that was added");
-    }
-
-    @Test
-    void testSetTimeOfSale() {
-        // Placeholder Test
+        assertEquals(true, mySale.checkId(0), "Program didn't found ID for item that was added");
     }
 }

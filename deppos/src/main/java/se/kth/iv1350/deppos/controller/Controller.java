@@ -70,12 +70,11 @@ public class Controller {
      *         and the updated total amount of the sale, etc.
      */
     public SaleDTO enterItem(int id, int quantity) {
-        ItemDTO itemInfo = sale.checkId(id);
-        if(itemInfo != null) {
+        if(sale.checkId(id)) {
             sale.increaseItemQuantity(id, quantity);
         }
         else {
-            itemInfo = eish.getItemInfo(id);
+            ItemDTO itemInfo = eish.getItemInfo(id);
             sale.addItem(itemInfo, quantity);
         }
         return sale.getSaleDTO();

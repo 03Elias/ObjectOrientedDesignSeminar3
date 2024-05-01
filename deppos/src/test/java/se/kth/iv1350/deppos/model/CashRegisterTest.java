@@ -18,9 +18,12 @@ public class CashRegisterTest {
     }
 
     @Test
-    void testCheckCashInRegister() { 
+    void testCheckCashInRegister() {
         double cashInRegister = cashRegister.checkCashInRegister();
         assertEquals(0.0, cashInRegister);
+        cashRegister.updateCashInRegister(33.0);
+        cashInRegister = cashRegister.checkCashInRegister();
+        assertEquals(33.0, cashInRegister);
     }
 
     @Test
@@ -31,7 +34,7 @@ public class CashRegisterTest {
     }
 
     @Test
-    void testCalculatedChange() { 
+    void testCalculatedChangeOfAnEndedSale() { 
         double amountPaid = 40.0;
         //SaleDTO price is 33.0 - 5.0 = 28.0
         assertEquals(12.0, cashRegister.calculatedChange(amountPaid,saleInfo));

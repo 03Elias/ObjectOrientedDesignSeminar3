@@ -1,7 +1,6 @@
 package se.kth.iv1350.deppos.controller;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -71,12 +70,5 @@ public class ControllerTest {
         SaleDTO saleInfo = controller.enterItem(0, 1);
         assertEquals(0.0, saleInfo.getTotalDiscount(), "StartSale should set totalDiscount to 0.0");
         controller.addDiscount(0);
-    }
-
-    @Disabled
-    @Test
-    public void testAmountPaid() {
-        //The amountPaid functionality is tested through smaller tests across the classes.
-        //It does not contain any logic that is not tested in other classes.
     }
 }

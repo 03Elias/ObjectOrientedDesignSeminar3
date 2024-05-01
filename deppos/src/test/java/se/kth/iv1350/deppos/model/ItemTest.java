@@ -19,14 +19,14 @@ class ItemTest {
     }
 
     @Test
-    public void testIncreaseQuantity() { 
+    public void testIncreaseQuantityForAnItem() { 
         assertEquals(1, item.getQuantity());
         item.increaseQuantity(2);
         assertEquals(3, item.getQuantity());
     }
 
     @Test
-    public void testGetTotalPrice() { 
+    public void testCalculateTotalPriceForAllQuantitiesOfTheItem() { 
         assertEquals(itemPrice, item.getTotalPrice(), "Total price should be " + itemPrice + " since we only have 1 item");
         item.increaseQuantity(3);
         double totalPrice = itemPrice * 4;
@@ -34,7 +34,7 @@ class ItemTest {
     }
 
     @Test
-    public void testGetTotalVat() { 
+    public void testCalculateTotalVatForAllQuantitiesOfTheItem() { 
         double totalVat = itemPrice - (itemPrice / (1 + itemVat));
         assertEquals(totalVat, item.getTotalVat());
         item.increaseQuantity(3);
