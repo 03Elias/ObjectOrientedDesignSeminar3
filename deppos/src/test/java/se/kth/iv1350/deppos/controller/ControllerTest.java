@@ -31,17 +31,6 @@ public class ControllerTest {
     }
 
     @Test
-    public void testStartSale() {
-        controller.startSale();
-    
-        assertNotNull(controller.getSale().getSaleDTO().getSaleTime(), "StartSale should set saleTime to current time");
-        assertEquals(0.0, controller.getSale().getSaleDTO().getTotalPrice(), "StartSale should set totalPrice to 0.0");
-        assertEquals(0.0, controller.getSale().getSaleDTO().getTotalVat(), "StartSale should set totalVat to 0.0");
-        assertEquals(0.0, controller.getSale().getSaleDTO().getTotalDiscount(), "StartSale should set totalDiscount to 0.0");
-        assertEquals(controller.getSale().getSaleDTO().getItemMap().size(), 0, "The size of items should be 0 at the start of a sale");
-    }
-
-    @Test
     public void testEnterItem() {
         controller.startSale();
         SaleDTO saleInfo = controller.enterItem(0, 1);

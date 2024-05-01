@@ -47,18 +47,6 @@ public class Controller {
     }
 
     /**
-     * Retrives the current sale.
-     * 
-     * @return The current sale.
-     * 
-     * @see se.kth.iv1350.deppos.model.Sale
-     * 
-     */
-    public Sale getSale() {
-        return sale;
-    }
-
-    /**
      * When an item is scanned/entered.
      * 
      * @param id       The id is the identifier if the entered item that will be
