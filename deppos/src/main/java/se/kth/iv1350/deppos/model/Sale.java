@@ -31,14 +31,13 @@ public class Sale {
      * @param id The item identifier.
      * @return If the item is present in the current sale or not.
      */
-    public ItemDTO checkId(int id) {
+    public boolean checkId(int id) {
         for(Item item : items) {
-            if(item.itemDTO.getItemId() == id) {
-                return item.itemDTO;
+            if(item.itemDTO.getItemId() == id){
+                return true;
             }
-    } return null;
-}
-
+        } return false;
+    }
     /**
      * Adds an item to the current sale.
      * 
