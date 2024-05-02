@@ -35,7 +35,7 @@ public class View {
         SaleDTO saleInfo = contr.endSale();
         System.out.println("End sale: ");
         System.out.println(
-                String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
+        String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
         System.out.println();
 
         System.out.println(String.format("Customer pays \t%.2f SEK", 90.0).replace(",", ":"));

@@ -20,7 +20,7 @@ public class Main {
         SalelogHandler slh = new SalelogHandler();
         ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();
         ExternalInventorySystemHandler eish = new ExternalInventorySystemHandler();
-        CashRegister cr = new CashRegister();   //Fanns inte med i SSD:n
+        CashRegister cr = new CashRegister();
 
         Controller controller = new Controller(eish, eash, dh, slh, cr);
 

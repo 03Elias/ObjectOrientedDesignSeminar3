@@ -1,5 +1,4 @@
 package se.kth.iv1350.deppos.model;
-
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 
 public class Item {
@@ -44,7 +43,6 @@ public class Item {
      * Increases the quantity of a certain Item if already bought/scanned.
      * 
      * @param quantity The quantity of the item in the current sale.
-     * 
      * @return The item is returned with the correct quantity of it in the sale.
      */
     public Item increaseQuantity(int quantity) {
@@ -63,9 +61,10 @@ public class Item {
     }
 
     /**
-     * Gets the total Vat of the item.
+     * Gets the total VAT of the item.
      * 
-     * @return The total Vat is returned.
+     * @return The total VAT is returned.
+     * 
      */
     public double getTotalVat() {
         double itemPrice = this.itemDTO.getItemPrice();

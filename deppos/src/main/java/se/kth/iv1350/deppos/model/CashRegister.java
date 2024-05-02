@@ -4,7 +4,14 @@ import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class CashRegister {
     private double cashInRegister;
-    private double change;
+
+    /**
+     * Constructor for CashRegister.
+     * 
+     */
+    public CashRegister() {
+        cashInRegister = 0;
+    }
 
     /**
      * The method updates the cash in the register after a sale.
@@ -34,7 +41,7 @@ public class CashRegister {
      */
     public double calculatedChange(double amountPaid, SaleDTO saleInfo) {
         double totalPrice = getSalePrice(saleInfo);
-        change = amountPaid - totalPrice;
+        double change = amountPaid - totalPrice;
 
         if (change > 0) {
             return change;

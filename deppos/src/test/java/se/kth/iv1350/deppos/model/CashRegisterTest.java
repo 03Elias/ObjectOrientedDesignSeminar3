@@ -36,7 +36,6 @@ public class CashRegisterTest {
     @Test
     void testCalculatedChangeOfAnEndedSale() { 
         double amountPaid = 40.0;
-        //SaleDTO price is 33.0 - 5.0 = 28.0
         assertEquals(12.0, cashRegister.calculatedChange(amountPaid,saleInfo));
     }
 }

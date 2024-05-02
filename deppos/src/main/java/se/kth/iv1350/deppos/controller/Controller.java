@@ -107,7 +107,6 @@ public class Controller {
         eash.updateExternalAccountSystem(saleInfo);
         eish.updateExternalInventorySystem(saleInfo);
 
-
         double change = this.cashRegister.calculatedChange(amountPaid, saleInfo);
         this.cashRegister.updateCashInRegister(amountPaid);
 

@@ -11,7 +11,6 @@ public class ExternalAccountSystemHandler {
      * with the External Account System.
      */
     public ExternalAccountSystemHandler() {
-        //Mockdata
         totalAmountOfMoney = 135094;
     }
 

@@ -8,7 +8,6 @@ import java.util.Map;
 import se.kth.iv1350.deppos.model.Item;
 
 public class SaleDTO {
-
     private LocalDateTime saleTime;
     private double totalPrice;
     private double totalVat;

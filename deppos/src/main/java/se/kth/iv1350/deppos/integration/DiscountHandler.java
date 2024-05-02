@@ -7,12 +7,11 @@ import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class DiscountHandler {
-    //Mockdata, will eventually be imported from an external source.
+    //Mockdata
     private double currentStoreDiscount;
     private int[] customerIds;
     private double customerDiscount;
     private Map<Integer, Double> itemDiscounts = new HashMap<>();
-
 
     /**
      * Starts an new instance of DiscountHandler.
@@ -40,13 +39,11 @@ public class DiscountHandler {
         double discount = 0.0;
         double totalSalePrice = saleDTO.getTotalPrice();
     
-        // Calculate the total discount for items
         for (ItemDTO itemDTO : saleDTO.getItemMap().values()) {
             int quantity = saleDTO.getItemQuantityMap().get(itemDTO.getItemId());
             discount += getItemDiscount(itemDTO) * quantity;
         }
     
-        // Calculate the customer discount
         discount += (totalSalePrice - discount) * (customerDiscount > currentStoreDiscount && isCustomer(customerID) ? customerDiscount : currentStoreDiscount);
     
         return discount;

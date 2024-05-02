@@ -20,9 +20,9 @@ class ItemTest {
 
     @Test
     public void testIncreaseQuantityForAnItem() { 
-        assertEquals(1, item.getQuantity());
+        assertEquals(1, item.getQuantity(), "Quantity should be 1 at the beginning");
         item.increaseQuantity(2);
-        assertEquals(3, item.getQuantity());
+        assertEquals(3, item.getQuantity(), "Quantity should be 3 since increased it by 2");
     }
 
     @Test
@@ -36,9 +36,9 @@ class ItemTest {
     @Test
     public void testCalculateTotalVatForAllQuantitiesOfTheItem() { 
         double totalVat = itemPrice - (itemPrice / (1 + itemVat));
-        assertEquals(totalVat, item.getTotalVat());
+        assertEquals(totalVat, item.getTotalVat(), "Total vat should be " + totalVat);
         item.increaseQuantity(3);
         totalVat += totalVat * 3;
-        assertEquals(totalVat, item.getTotalVat());
+        assertEquals(totalVat, item.getTotalVat(), "Total vat should be " + totalVat);
     }
 }

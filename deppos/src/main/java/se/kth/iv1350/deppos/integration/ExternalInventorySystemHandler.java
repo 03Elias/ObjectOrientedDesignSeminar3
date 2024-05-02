@@ -46,7 +46,6 @@ public class ExternalInventorySystemHandler {
      * @param id The id of the item that is needed to be fetched.
      */
     public ItemDTO getItemInfo(int id){
-        //fetch item info from external inventory
         for(ItemDTO item : items){
             if(item.getItemId() == id){
                 return item;

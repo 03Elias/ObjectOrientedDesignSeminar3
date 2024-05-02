@@ -5,7 +5,7 @@ public class ItemDTO {
     private double itemPrice;
     private double itemVat;
     private String itemDescription;
-    private int itemID; // Maybe better if string?
+    private int itemID;
 
     /**
      * A constructor that creates a new instance of the ItemDTO which contains all
