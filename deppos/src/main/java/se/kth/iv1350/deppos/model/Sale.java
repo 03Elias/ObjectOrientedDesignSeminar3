@@ -32,12 +32,14 @@ public class Sale {
      * @return If the item is present in the current sale or not.
      */
     public boolean checkId(int id) {
-        for(Item item : items) {
-            if(item.itemDTO.getItemId() == id){
+        for (Item item : items) {
+            if (item.itemDTO.getItemId() == id) {
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
+
     /**
      * Adds an item to the current sale.
      * 
@@ -79,16 +81,19 @@ public class Sale {
      * 
      * @param id The identifier of the item.
      * @return The item is returned.
-     * 
+     * @throws IllegalArgumentException detects and throws an exception if the ID does not exist in the inventory catalog. 
      */
-    private Item findItemById(int id) {
+    public Item findItemById(int id) throws IllegalArgumentException
+    {   
         for (Item item : items) {
             if (item.itemDTO.getItemId() == id) {
                 return item;
             }
-        }
-        return null;
+        } 
+        throw new IllegalArgumentException("ID does not exist in the inventory catalog.");
+
     }
+   
 
     /**
      * Retrives the SaleDTO (Sale information) of the current sale.

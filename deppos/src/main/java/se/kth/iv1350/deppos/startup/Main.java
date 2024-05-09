@@ -1,5 +1,4 @@
 package se.kth.iv1350.deppos.startup;
-
 import se.kth.iv1350.deppos.controller.Controller;
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;

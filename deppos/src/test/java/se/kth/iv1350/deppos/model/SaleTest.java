@@ -1,16 +1,18 @@
 package se.kth.iv1350.deppos.model;
 
+import java.lang.IllegalArgumentException;
 import se.kth.iv1350.deppos.integration.MockData;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SaleTest {
     private ItemDTO itemInfo;
     private static Sale mySale;
-    
+
     @BeforeEach
     public void setup() {
         itemInfo = MockData.getMockItemDTOs()[0];
@@ -46,6 +48,31 @@ public class SaleTest {
         mySale.addItem(itemInfo, 1);
         boolean expResult = true;
         boolean result = mySale.checkId(0);
-        assertEquals(expResult, result,"Program didn't found ID for item that was added");
+        assertEquals(expResult, result, "Program didn't found ID for item that was added");
+    }
+
+    // Exception Handling Tests, maybe should be moved.//
+
+    @Test
+    void testFindItemByInvalidId() {
+        int existentID = itemInfo.getItemId();
+        int nonExistentID = -1;
+        assertNotEquals(existentID, nonExistentID, "The id's for the test isn't unequal");
+
+        mySale.addItem(itemInfo, existentID);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            mySale.findItemById(nonExistentID);
+        });
+    }
+    @Test
+    void testFindItemByValidId(){
+        int existentID = itemInfo.getItemId();
+        int validID = 0;
+        assertEquals(existentID, validID, "The id's for the test isn't equal");
+
+        mySale.addItem(itemInfo, existentID);
+
+        assertDoesNotThrow(findItemById(validID));
     }
 }
