@@ -1,4 +1,7 @@
 package se.kth.iv1350.deppos.startup;
+
+import java.net.ConnectException;
+
 import se.kth.iv1350.deppos.controller.Controller;
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
@@ -14,7 +17,7 @@ public class Main {
      * 
      * @param args Command-line argument passed to the application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ConnectException {
         DiscountHandler dh = new DiscountHandler();
         SalelogHandler slh = new SalelogHandler();
         ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();

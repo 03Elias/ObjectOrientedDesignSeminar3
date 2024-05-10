@@ -1,6 +1,7 @@
 package se.kth.iv1350.deppos.integration;
 
 import java.util.Map;
+import java.net.ConnectException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class ExternalInventorySystemHandlerTest {
     }
 
     @Test
-    public void testUpdateAndGetExternalInventorySystem() {
+    public void testUpdateAndGetExternalInventorySystem() throws ConnectException {
         int quantity = eish.checkInventoryQuantity(0);
         eish.updateExternalInventorySystem(saleInfo);
         int newQuantity = eish.checkInventoryQuantity(0);

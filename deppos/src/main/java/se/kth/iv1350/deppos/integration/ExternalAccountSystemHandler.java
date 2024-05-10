@@ -3,6 +3,7 @@ package se.kth.iv1350.deppos.integration;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ExternalAccountSystemHandler {
+    private ExceptionHandler eh;
     private int totalAmountOfMoney;
 
     /**
@@ -12,6 +13,7 @@ public class ExternalAccountSystemHandler {
      */
     public ExternalAccountSystemHandler() {
         totalAmountOfMoney = 135094;
+        eh = new ExceptionHandler("account");
     }
 
     /**

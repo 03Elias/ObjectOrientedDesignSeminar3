@@ -1,5 +1,7 @@
 package se.kth.iv1350.deppos.controller;
 
+import java.net.ConnectException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +33,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testEnterItem() {
+    public void testEnterItem() throws ConnectException{
         controller.startSale();
         SaleDTO saleInfo = controller.enterItem(0, 1);
         assertEquals(1, saleInfo.getItemMap().size(), "There should be one item in the sale");
@@ -44,7 +46,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testEndSale() {
+    public void testEndSale() throws ConnectException {
         controller.startSale();
         SaleDTO saleInfo = controller.enterItem(0, 1);
         assertNotEquals(0.0, saleInfo.getTotalPrice(), "Double check so we have a running total");
@@ -54,7 +56,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testApplyDiscount() {
+    public void testApplyDiscount() throws ConnectException {
         controller.startSale();
         SaleDTO saleInfo = controller.enterItem(0, 1);
         assertEquals(0.0, saleInfo.getTotalDiscount(), "StartSale should set totalDiscount to 0.0");

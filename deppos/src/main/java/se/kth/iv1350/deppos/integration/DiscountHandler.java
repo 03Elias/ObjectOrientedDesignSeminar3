@@ -8,6 +8,7 @@ import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class DiscountHandler {
     //Mockdata
+    private ExceptionHandler eh;
     private double currentStoreDiscount;
     private int[] customerIds;
     private double customerDiscount;

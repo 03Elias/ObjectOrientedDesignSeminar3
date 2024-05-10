@@ -1,11 +1,12 @@
 package se.kth.iv1350.deppos.model;
 
 import java.lang.IllegalArgumentException;
+import java.util.NoSuchElementException;
+
 import se.kth.iv1350.deppos.integration.MockData;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,7 +62,7 @@ public class SaleTest {
 
         mySale.addItem(itemInfo, existentID);
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NoSuchElementException.class, () -> {
             mySale.findItemById(nonExistentID);
         });
     }
@@ -73,6 +74,6 @@ public class SaleTest {
 
         mySale.addItem(itemInfo, existentID);
 
-        assertDoesNotThrow(findItemById(validID));
+        assertDoesNotThrow(() -> mySale.findItemById(validID));
     }
 }

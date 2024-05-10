@@ -7,6 +7,7 @@ import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ExternalInventorySystemHandler {
     // Mockdata
+    private ExceptionHandler eh;
     private ItemDTO[] items = MockData.getMockItemDTOs();
     private int[] inventoryQuantities = MockData.getMockInventoryQuantities();
 
@@ -16,6 +17,7 @@ public class ExternalInventorySystemHandler {
      * with the External Inventory System.
      */
     public ExternalInventorySystemHandler() {
+        eh = new ExceptionHandler("inventory");
     }
 
     /**
@@ -24,9 +26,11 @@ public class ExternalInventorySystemHandler {
      * @param saleInfo The sale information that contains amount of items sold and
      *                 so on that is needed to update the inventory.
      */
-    public void updateExternalInventorySystem(SaleDTO saleInfo) {
+    public void updateExternalInventorySystem(SaleDTO saleInfo) throws ConnectException {
         for (ItemDTO itemDTO : saleInfo.getItemMap().values()) {
             int itemId = itemDTO.getItemId();
+            simulateThrowDependingOnID(itemId);
+
             int quantityInSale = saleInfo.getItemQuantityMap().get(itemId);
 
             inventoryQuantities[itemId] -= quantityInSale;
@@ -39,30 +43,41 @@ public class ExternalInventorySystemHandler {
      * @param id Identifies the desired item.
      * @return The quantity of the desired item that is stored in the external
      *         inventory system.
+     * @throws ConnectException Signals that no connection to the inventory system
+     *                          were able to be made.
      */
 
-    public int checkInventoryQuantity(int id) throws Exception{
-        
+    public int checkInventoryQuantity(int id) throws ConnectException {
+        simulateThrowDependingOnID(id);
+
         return inventoryQuantities[id];
-            
-      throw new Exception("Database can not be accessed.");
     }
+
     /**
      * To retrive item information of a specific item from the external inventory.
+     * 
      * @param id The id of the item that is needed to be fetched.
-     * @throws Exception if the given item ID does not exist in inventory catalog. 
+     * @throws Exception if the given item ID does not exist in inventory catalog.
      */
-    public ItemDTO getItemInfo(int id) throws Exception{
+    public ItemDTO getItemInfo(int id) throws ConnectException {// throws Exception
+        simulateThrowDependingOnID(id);
 
-        for(ItemDTO item : items){
-            if(item.getItemId() == id){
+        for (ItemDTO item : items) {
+            if (item.getItemId() == id) {
                 return item;
             }
         }
-        throw new Exception("The given item ID does not exist in inventory catalog");
-        //kommer den hit finns inte id:et i databasen
-    
-    
+        return null;
+        // throw new Exception("The given item ID does not exist in inventory catalog");
+        // kommer den hit finns inte id:et i databasen
     }
 
+    /**
+     * Simulates an error depending on the given items id
+     */
+    private void simulateThrowDependingOnID(int id) throws ConnectException {
+        if (id == 0) {
+            eh.handleConnectionError();
+        }
+    }
 }

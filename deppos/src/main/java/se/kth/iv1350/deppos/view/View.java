@@ -1,6 +1,7 @@
 package se.kth.iv1350.deppos.view;
 
 import java.time.format.DateTimeFormatter;
+import java.net.ConnectException;
 
 import se.kth.iv1350.deppos.controller.Controller;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
@@ -25,7 +26,7 @@ public class View {
      * A sample run of the program
      * 
      */
-    public void sampleRun() {
+    public void sampleRun() throws ConnectException {
         contr.startSale();
 
         addItem(0, 1);
@@ -81,19 +82,22 @@ public class View {
      * 
      */
     private void addItem(int id, int quantity) {
-        SaleDTO saleInfo = contr.enterItem(id, quantity);
-        ItemDTO itemInfo = saleInfo.getItemMap().get(id);
+        try{
+            SaleDTO saleInfo = contr.enterItem(id, quantity);
+            ItemDTO itemInfo = saleInfo.getItemMap().get(id);
 
-        System.out.println("Added " + quantity + " of item with item id " + id + " to the sale.");
-        System.out.println("Item ID:\t\t" + id);
-        System.out.println("Item Name:\t\t" + itemInfo.getItemName());
-        System.out.println("Item Cost:\t\t" + itemInfo.getItemPrice());
-        System.out.println("Item VAT:\t\t" + itemInfo.getItemVat() * 100 + "%");
-        System.out.println("Item Description:\t" + itemInfo.getItemDescription());
-        System.out.println("-------------------------------------------------");
-        System.out.println(
-                String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
-        System.out.println(String.format("Total VAT: \t\t%.2f SEK", saleInfo.getTotalVat()).replace(",", ":"));
-        System.out.println("-------------------------------------------------");
+            System.out.println("Added " + quantity + " of item with item id " + id + " to the sale.");
+            System.out.println("Item ID:\t\t" + id);
+            System.out.println("Item Name:\t\t" + itemInfo.getItemName());
+            System.out.println("Item Cost:\t\t" + itemInfo.getItemPrice());
+            System.out.println("Item VAT:\t\t" + itemInfo.getItemVat() * 100 + "%");
+            System.out.println("Item Description:\t" + itemInfo.getItemDescription());
+            System.out.println("-------------------------------------------------");
+            System.out.println(String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
+            System.out.println(String.format("Total VAT: \t\t%.2f SEK", saleInfo.getTotalVat()).replace(",", ":"));
+            System.out.println("-------------------------------------------------");
+        } catch (ConnectException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

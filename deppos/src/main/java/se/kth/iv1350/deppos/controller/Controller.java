@@ -1,5 +1,8 @@
 package se.kth.iv1350.deppos.controller;
 
+import java.util.NoSuchElementException;
+import java.net.ConnectException;
+
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
@@ -57,7 +60,7 @@ public class Controller {
      *         includes the details of the entered item
      *         and the updated total amount of the sale, etc.
      */
-    public SaleDTO enterItem(int id, int quantity) {
+    public SaleDTO enterItem(int id, int quantity) throws ConnectException {
         if(sale.checkId(id)) {
             sale.increaseItemQuantity(id, quantity);
         }
@@ -65,8 +68,28 @@ public class Controller {
             ItemDTO itemInfo = eish.getItemInfo(id);
             sale.addItem(itemInfo, quantity);
         }
+            
         return sale.getSaleDTO();
     }
+
+    //Temporary function
+    public SaleDTO enterItemTryCatch(int id, int quantity) throws ConnectException {
+        try{
+            sale.increaseItemQuantity(id, quantity);
+        } catch(NoSuchElementException e){
+            ItemDTO itemInfo = eish.getItemInfo(id);
+            sale.addItem(itemInfo, quantity);
+        }
+        
+        return sale.getSaleDTO();
+    }
+
+    //Temporary function
+    public SaleDTO enterItemAlwaysCallEish(int id, int quantity) throws ConnectException{
+        ItemDTO itemInfo = eish.getItemInfo(id);
+        return sale.addItem(itemInfo, quantity);
+    }
+
 
     /**
      * Ends the current sale after all the desired items have been entered into the
@@ -100,8 +123,9 @@ public class Controller {
      * @param amountPaid The amount that the customer paid.
      * 
      * @return The receipt of the sale.
+     * @throws ConnectException 
      */
-    public ReceiptDTO amountPaid(double amountPaid) {
+    public ReceiptDTO amountPaid(double amountPaid) throws ConnectException {
         SaleDTO saleInfo = sale.getSaleDTO();
 
         eash.updateExternalAccountSystem(saleInfo);
