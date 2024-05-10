@@ -1,5 +1,4 @@
 package se.kth.iv1350.deppos.model;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,11 +25,12 @@ class ItemTest {
     }
 
     @Test
-    public void testCalculateTotalPriceForAllQuantitiesOfTheItem() { 
+    public void testCalculateTotalPriceForAllQuantitiesOfTheItem() {
         assertEquals(itemPrice, item.getTotalPrice(), "Total price should be " + itemPrice + " since we only have 1 item");
         item.increaseQuantity(3);
         double totalPrice = itemPrice * 4;
-        assertEquals(totalPrice, item.getTotalPrice(), "Total price should be " + totalPrice + " since we have 4 items");
+
+                assertEquals(totalPrice, item.getTotalPrice(), "Total price should be " + totalPrice + " since we have 4 items");
     }
 
     @Test

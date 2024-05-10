@@ -1,6 +1,7 @@
 package se.kth.iv1350.deppos.integration;
 
 import java.net.ConnectException;
+import java.util.NoSuchElementException;
 
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
@@ -59,7 +60,7 @@ public class ExternalInventorySystemHandler {
      * @param id The id of the item that is needed to be fetched.
      * @throws Exception if the given item ID does not exist in inventory catalog.
      */
-    public ItemDTO getItemInfo(int id) throws ConnectException {// throws Exception
+    public ItemDTO getItemInfo(int id) throws ConnectException, NoSuchElementException {// throws Exception
         simulateThrowDependingOnID(id);
 
         for (ItemDTO item : items) {
@@ -67,16 +68,14 @@ public class ExternalInventorySystemHandler {
                 return item;
             }
         }
-        return null;
-        // throw new Exception("The given item ID does not exist in inventory catalog");
-        // kommer den hit finns inte id:et i databasen
+        throw new NoSuchElementException("The given item ID does not exist in inventory catalog");
     }
 
     /**
      * Simulates an error depending on the given items id
      */
     private void simulateThrowDependingOnID(int id) throws ConnectException {
-        if (id == 0) {
+        if (id == -420) {
             eh.handleConnectionError();
         }
     }

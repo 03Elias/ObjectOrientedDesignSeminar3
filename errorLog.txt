@@ -1,0 +1,216 @@
+[2024-05-10 15:55:58] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 15:59:16] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 15:59:44] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:00:12] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:89)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:00:12] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:89)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:35)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:00:47] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:06:30] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:06:59] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:07:09] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:07:50] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:08:08] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:09:43] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 16:13:41] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:28)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:63)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:68)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:88)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 17:11:02] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:29)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:80)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:64)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:69)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:89)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:34)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 17:11:54] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:29)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:79)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:64)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:69)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:90)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:35)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 17:13:05] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:29)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:79)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:64)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:69)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:90)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:35)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 17:50:37] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:29)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:79)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:64)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:69)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:90)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:33)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+
+[2024-05-10 17:51:48] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:29)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:79)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:64)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:69)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:90)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:33)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:32)
+
+
+

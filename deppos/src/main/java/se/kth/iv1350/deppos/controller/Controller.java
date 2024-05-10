@@ -26,15 +26,17 @@ public class Controller {
      * to communicate with them later on.
      * 
      * @param cashRegister is an instance of the object cashRegister.
-     * @param eish is an instance of the object ExternalInventorySystemHandler.
-     * @param eash is an instance of the object ExternalAccountSystemHandler.
-     * @param dh   is an instance of the object DiscountHandler.
-     * @param slh  is an instance of the object SalelogHandler.
+     * @param eish         is an instance of the object
+     *                     ExternalInventorySystemHandler.
+     * @param eash         is an instance of the object
+     *                     ExternalAccountSystemHandler.
+     * @param dh           is an instance of the object DiscountHandler.
+     * @param slh          is an instance of the object SalelogHandler.
      */
 
     public Controller(ExternalInventorySystemHandler eish, ExternalAccountSystemHandler eash, DiscountHandler dh,
             SalelogHandler slh, CashRegister cashRegister) {
-        
+
         this.cashRegister = cashRegister;
         this.eish = eish;
         this.eash = eash;
@@ -60,36 +62,34 @@ public class Controller {
      *         includes the details of the entered item
      *         and the updated total amount of the sale, etc.
      */
-    public SaleDTO enterItem(int id, int quantity) throws ConnectException {
-        if(sale.checkId(id)) {
+    public SaleDTO enterItem(int id, int quantity) throws ConnectException, NoSuchElementException {
+        if (sale.checkId(id)) {
             sale.increaseItemQuantity(id, quantity);
-        }
-        else {
+        } else {
             ItemDTO itemInfo = eish.getItemInfo(id);
             sale.addItem(itemInfo, quantity);
         }
-            
+
         return sale.getSaleDTO();
     }
 
-    //Temporary function
+    // Temporary function
     public SaleDTO enterItemTryCatch(int id, int quantity) throws ConnectException {
-        try{
+        try {
             sale.increaseItemQuantity(id, quantity);
-        } catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             ItemDTO itemInfo = eish.getItemInfo(id);
             sale.addItem(itemInfo, quantity);
         }
-        
+
         return sale.getSaleDTO();
     }
 
-    //Temporary function
-    public SaleDTO enterItemAlwaysCallEish(int id, int quantity) throws ConnectException{
+    // Temporary function
+    public SaleDTO enterItemAlwaysCallEish(int id, int quantity) throws ConnectException {
         ItemDTO itemInfo = eish.getItemInfo(id);
         return sale.addItem(itemInfo, quantity);
     }
-
 
     /**
      * Ends the current sale after all the desired items have been entered into the
@@ -126,6 +126,8 @@ public class Controller {
      * @throws ConnectException 
      */
     public ReceiptDTO amountPaid(double amountPaid) throws ConnectException {
+       
+
         SaleDTO saleInfo = sale.getSaleDTO();
 
         eash.updateExternalAccountSystem(saleInfo);
@@ -138,5 +140,6 @@ public class Controller {
         slh.addSale(receipt);
 
         return receipt;
+            
     }
 }

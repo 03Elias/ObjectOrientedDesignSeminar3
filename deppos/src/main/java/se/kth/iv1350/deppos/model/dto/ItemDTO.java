@@ -39,7 +39,7 @@ public class ItemDTO {
      * 
      * @return The price of the item is returned.
      */
-    public double getItemPrice() {
+    public double getItemPrice(){
         return itemPrice;
 
     }

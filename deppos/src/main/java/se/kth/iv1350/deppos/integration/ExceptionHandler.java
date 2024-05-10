@@ -3,6 +3,7 @@ package se.kth.iv1350.deppos.integration;
 import java.net.ConnectException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.NoSuchElementException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,12 +24,32 @@ public class ExceptionHandler {
     }
     
     public void handleConnectionError() throws ConnectException {
-        System.out.println("No connection to the external " + this.system + " system.");
+        //System.out.println("No connection to the external " + this.system + " system.");
 
         ConnectException connectException = new ConnectException("No connection to the external " + this.system + " system.");
         logException(connectException);
 
         throw connectException;
+    }
+
+
+    
+    public void handleNoSuchElementError() throws NoSuchElementException{
+        //System.out.println("No connection to the external " + this.system + " system.");
+
+        NoSuchElementException noSuchElementException = new NoSuchElementException("No such ID");
+        logException(noSuchElementException);
+
+        throw noSuchElementException;
+    }
+
+    public void handleNullPointerError() throws NullPointerException{
+        //System.out.println("No connection to the external " + this.system + " system.");
+
+        NullPointerException nullPointerException = new NullPointerException("ItemInfo can not be null/empty");
+        logException(nullPointerException);
+
+        throw nullPointerException;
     }
 
     private void logException(Exception exception) {

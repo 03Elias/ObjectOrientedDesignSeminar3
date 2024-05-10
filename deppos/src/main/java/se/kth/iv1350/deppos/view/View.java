@@ -1,6 +1,7 @@
 package se.kth.iv1350.deppos.view;
 
 import java.time.format.DateTimeFormatter;
+import java.util.NoSuchElementException;
 import java.net.ConnectException;
 
 import se.kth.iv1350.deppos.controller.Controller;
@@ -26,9 +27,11 @@ public class View {
      * A sample run of the program
      * 
      */
-    public void sampleRun() throws ConnectException {
-        contr.startSale();
+    public void sampleRun() {
 
+        contr.startSale();
+        addItem(-420, 1);
+        addItem(-4, 25);
         addItem(0, 1);
         addItem(1, 2);
         addItem(2, 1);
@@ -36,11 +39,12 @@ public class View {
         SaleDTO saleInfo = contr.endSale();
         System.out.println("End sale: ");
         System.out.println(
-        String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
+                String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
         System.out.println();
 
         System.out.println(String.format("Customer pays \t%.2f SEK", 90.0).replace(",", ":"));
-        ReceiptDTO receipt = contr.amountPaid(90.0);
+        ReceiptDTO receipt = amountPaid(90);
+        
         printReceipt(receipt);
     }
 
@@ -82,7 +86,7 @@ public class View {
      * 
      */
     private void addItem(int id, int quantity) {
-        try{
+        try {
             SaleDTO saleInfo = contr.enterItem(id, quantity);
             ItemDTO itemInfo = saleInfo.getItemMap().get(id);
 
@@ -93,11 +97,28 @@ public class View {
             System.out.println("Item VAT:\t\t" + itemInfo.getItemVat() * 100 + "%");
             System.out.println("Item Description:\t" + itemInfo.getItemDescription());
             System.out.println("-------------------------------------------------");
-            System.out.println(String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
+            System.out.println(
+                    String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
             System.out.println(String.format("Total VAT: \t\t%.2f SEK", saleInfo.getTotalVat()).replace(",", ":"));
             System.out.println("-------------------------------------------------");
-        } catch (ConnectException e){
+        } catch (ConnectException e1) {
+            System.out.println(e1.getMessage());
+
+        } catch (NoSuchElementException e2) {
+            System.out.println(e2.getMessage());
+        }
+        // catch(NullPointerException e3){
+        //     System.out.println(e3.getMessage());
+        // }
+    }
+
+    private ReceiptDTO amountPaid(double amount){
+        try {
+            return contr.amountPaid(amount);
+        }
+        catch (ConnectException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 }
