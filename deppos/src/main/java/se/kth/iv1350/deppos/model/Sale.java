@@ -2,9 +2,13 @@ package se.kth.iv1350.deppos.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
+import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
+import se.kth.iv1350.deppos.integration.SalelogHandler;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
+import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class Sale {
@@ -13,6 +17,8 @@ public class Sale {
     private double totalVat;
     private double totalDiscount;
     private ArrayList<Item> items;
+    // private List<RevenueObserverInterface> RevenueObservers = new ArrayList<>();
+    private RevenueObserverInterface revenueObserver;
 
     /**
      * Starts a new instance of Sale (a constructor).
@@ -23,6 +29,7 @@ public class Sale {
         this.totalVat = 0.0;
         this.totalDiscount = 0.0;
         this.items = new ArrayList<>();
+
     }
 
     /**
@@ -66,7 +73,7 @@ public class Sale {
      *         current sale.
      */
     public SaleDTO increaseItemQuantity(int id, int quantityToAdd) throws NoSuchElementException {
-        if(!checkId(id)){
+        if (!checkId(id)) {
             throw new NoSuchElementException("Id doesn't exist in the sale");
         }
 
@@ -95,8 +102,9 @@ public class Sale {
                 return item;
             }
         }
-        
-        NoSuchElementException IdDoesntExist = new NoSuchElementException("ID does not exist in the inventory catalog.");
+
+        NoSuchElementException IdDoesntExist = new NoSuchElementException(
+                "ID does not exist in the inventory catalog.");
         throw IdDoesntExist;
     }
 
@@ -121,4 +129,27 @@ public class Sale {
         this.totalDiscount = discountAmount;
         return getSaleDTO();
     }
+
+    public void finishedSale(ExternalAccountSystemHandler eash) {
+
+        double totalRevenue = eash.getTotalAmountOfMoney();
+
+        // 1. notify observers, send the totalRevenueValu as argument.
+        // "getTotalRevenue();"
+    }
+
+    private void notifyRevenueObservers(double totalRevenue) {
+
+        for (RevenueObserverInterface observer : revenueObserver) {
+            observer.updateRevenue(totalRevenue);
+        }
+    }
+
+    // private double getTotalRevenue(ArrayList<ReceiptDTO> saleList) {
+
+    // double totalRevenue = 0;
+
+    // for (ReceiptDTO receipt : saleList) {
+    // totalRevenue += receipt.getAmountPaid();
+    // }
 }

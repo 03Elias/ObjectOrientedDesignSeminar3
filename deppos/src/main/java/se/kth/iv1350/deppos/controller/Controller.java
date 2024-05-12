@@ -139,6 +139,8 @@ public class Controller {
         ReceiptDTO receipt = new ReceiptDTO(saleInfo, amountPaid, change);
         slh.addSale(receipt);
 
+        sale.finishedSale(eash);
+
         return receipt;
             
     }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
 
 public class SalelogHandler {
-    private ArrayList<ReceiptDTO> saleList;
+private ArrayList<ReceiptDTO> saleList;
 
     /**
      * The constructor that makes a new instance of SalelogHandler that communicates
@@ -32,5 +32,5 @@ public class SalelogHandler {
      */
     public ArrayList<ReceiptDTO> getSalelog() {
         return this.saleList;
-    }
+    } 
 }
