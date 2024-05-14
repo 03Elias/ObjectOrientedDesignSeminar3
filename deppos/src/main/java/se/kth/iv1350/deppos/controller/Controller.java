@@ -126,8 +126,6 @@ public class Controller {
      * @throws ConnectException 
      */
     public ReceiptDTO amountPaid(double amountPaid) throws ConnectException {
-       
-
         SaleDTO saleInfo = sale.getSaleDTO();
 
         eash.updateExternalAccountSystem(saleInfo);
@@ -139,9 +137,6 @@ public class Controller {
         ReceiptDTO receipt = new ReceiptDTO(saleInfo, amountPaid, change);
         slh.addSale(receipt);
 
-        sale.finishedSale(eash);
-
         return receipt;
-            
     }
 }

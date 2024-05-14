@@ -1792,3 +1792,19 @@ java.net.ConnectException: No connection to the external inventory system.
 
 
 
+[2024-05-14 13:42:21] No connection to the external inventory system.
+java.net.ConnectException: No connection to the external inventory system.
+	at se.kth.iv1350.deppos.integration.ExceptionHandler.handleConnectionError(ExceptionHandler.java:29)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.simulateThrowDependingOnID(ExternalInventorySystemHandler.java:79)
+	at se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler.getItemInfo(ExternalInventorySystemHandler.java:64)
+	at se.kth.iv1350.deppos.controller.Controller.enterItem(Controller.java:69)
+	at se.kth.iv1350.deppos.view.View.addItem(View.java:90)
+	at se.kth.iv1350.deppos.view.View.sampleRun(View.java:33)
+	at se.kth.iv1350.deppos.startup.Main.main(Main.java:35)
+	at org.codehaus.mojo.exec.ExecJavaMojo.doMain(ExecJavaMojo.java:385)
+	at org.codehaus.mojo.exec.ExecJavaMojo.doExec(ExecJavaMojo.java:374)
+	at org.codehaus.mojo.exec.ExecJavaMojo.lambda$execute$0(ExecJavaMojo.java:296)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+
+

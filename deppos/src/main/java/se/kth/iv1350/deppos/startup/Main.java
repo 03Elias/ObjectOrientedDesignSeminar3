@@ -8,6 +8,7 @@ import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.SalelogHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
 import se.kth.iv1350.deppos.model.CashRegister;
+import se.kth.iv1350.deppos.view.TotalRevenueView;
 import se.kth.iv1350.deppos.view.View;
 
 public class Main {
@@ -20,12 +21,14 @@ public class Main {
     public static void main(String[] args) throws ConnectException {
         DiscountHandler dh = new DiscountHandler();
         SalelogHandler slh = new SalelogHandler();
+        TotalRevenueView revenueView = new TotalRevenueView();
         ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();
         ExternalInventorySystemHandler eish = new ExternalInventorySystemHandler();
         CashRegister cr = new CashRegister();
 
-        Controller controller = new Controller(eish, eash, dh, slh, cr);
+        eash.addObserver(revenueView);
 
+        Controller controller = new Controller(eish, eash, dh, slh, cr);
         View retailStoreView = new View(controller);
 
         if(args != null) {

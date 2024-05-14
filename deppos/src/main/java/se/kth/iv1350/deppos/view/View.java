@@ -30,8 +30,6 @@ public class View {
     public void sampleRun() {
 
         contr.startSale();
-        addItem(-420, 1);
-        addItem(-4, 25);
         addItem(0, 1);
         addItem(1, 2);
         addItem(2, 1);
