@@ -2,7 +2,8 @@ package se.kth.iv1350.deppos.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
+
+import se.kth.iv1350.deppos.integration.exceptions.*;
 
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
@@ -50,7 +51,7 @@ public class Sale {
      * @return The updated sale with the SaleDTO.
      */
 
-    public SaleDTO addItem(ItemDTO itemInfo, int quantity) {
+    public SaleDTO addItem(ItemDTO itemInfo, int quantity) throws ItemNotFoundException {
         Item item = new Item(itemInfo, quantity);
         this.items.add(item);
         this.totalPrice += item.getTotalPrice();
@@ -66,9 +67,9 @@ public class Sale {
      * @return The SaleDTO is returned which contains the sale information of the
      *         current sale.
      */
-    public SaleDTO increaseItemQuantity(int id, int quantityToAdd) throws NoSuchElementException {
+    public SaleDTO increaseItemQuantity(int id, int quantityToAdd) throws ItemNotFoundException {
         if (!checkId(id)) {
-            throw new NoSuchElementException("Id doesn't exist in the sale");
+            throw new ItemNotFoundException("Id doesn't exist in the sale");
         }
 
         Item item = findItemById(id);
@@ -90,14 +91,14 @@ public class Sale {
      * @throws IllegalArgumentException detects and throws an exception if the ID
      *                                  does not exist in the inventory catalog.
      */
-    public Item findItemById(int id) throws NoSuchElementException {
+    public Item findItemById(int id) throws ItemNotFoundException {
         for (Item item : items) {
             if (item.itemDTO.getItemId() == id) {
                 return item;
             }
         }
 
-        NoSuchElementException IdDoesntExist = new NoSuchElementException(
+        ItemNotFoundException IdDoesntExist = new ItemNotFoundException(
                 "ID does not exist in the inventory catalog.");
         throw IdDoesntExist;
     }

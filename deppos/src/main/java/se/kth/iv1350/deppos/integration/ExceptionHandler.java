@@ -32,13 +32,13 @@ public class ExceptionHandler {
     /**
      * Handles an exception that occurs when there is no connection to the external system.
      * 
-     * @throws InventoryInventoryConnectException
+     * @throws ExternalExternalConnectException
      */
-    public void handleConnectionError() throws InventoryConnectionException {
-        InventoryConnectionException inventoryConnectException = new InventoryConnectionException("No connection to the external " + this.system + " system.");
-        logException(inventoryConnectException);
+    public void handleConnectionError() throws ExternalConnectionException {
+        ExternalConnectionException ExternalConnectException = new ExternalConnectionException("No connection to the external " + this.system + " system.");
+        logException(ExternalConnectException);
 
-        throw inventoryConnectException;
+        throw ExternalConnectException;
     }
 
 

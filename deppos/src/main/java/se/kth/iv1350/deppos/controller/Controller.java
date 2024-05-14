@@ -1,12 +1,11 @@
 package se.kth.iv1350.deppos.controller;
 
-import java.util.NoSuchElementException;
-import java.net.ConnectException;
-
+import se.kth.iv1350.deppos.integration.exceptions.*;
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
 import se.kth.iv1350.deppos.integration.SalelogHandler;
+import se.kth.iv1350.deppos.integration.exceptions.ExternalConnectionException;
 import se.kth.iv1350.deppos.model.CashRegister;
 import se.kth.iv1350.deppos.model.Sale;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
@@ -62,7 +61,7 @@ public class Controller {
      *         includes the details of the entered item
      *         and the updated total amount of the sale, etc.
      */
-    public SaleDTO enterItem(int id, int quantity) throws ConnectException, NoSuchElementException {
+    public SaleDTO enterItem(int id, int quantity) throws ExternalConnectionException, ItemNotFoundException {
         if (sale.checkId(id)) {
             sale.increaseItemQuantity(id, quantity);
         } else {
@@ -71,24 +70,6 @@ public class Controller {
         }
 
         return sale.getSaleDTO();
-    }
-
-    // Temporary function
-    public SaleDTO enterItemTryCatch(int id, int quantity) throws ConnectException {
-        try {
-            sale.increaseItemQuantity(id, quantity);
-        } catch (NoSuchElementException e) {
-            ItemDTO itemInfo = eish.getItemInfo(id);
-            sale.addItem(itemInfo, quantity);
-        }
-
-        return sale.getSaleDTO();
-    }
-
-    // Temporary function
-    public SaleDTO enterItemAlwaysCallEish(int id, int quantity) throws ConnectException {
-        ItemDTO itemInfo = eish.getItemInfo(id);
-        return sale.addItem(itemInfo, quantity);
     }
 
     /**
@@ -123,9 +104,9 @@ public class Controller {
      * @param amountPaid The amount that the customer paid.
      * 
      * @return The receipt of the sale.
-     * @throws ConnectException 
+     * @throws ExternalConnectionException if there is an error with the inventory 
      */
-    public ReceiptDTO amountPaid(double amountPaid) throws ConnectException {
+    public ReceiptDTO amountPaid(double amountPaid) throws ExternalConnectionException {
         SaleDTO saleInfo = sale.getSaleDTO();
 
         eash.updateExternalAccountSystem(saleInfo);

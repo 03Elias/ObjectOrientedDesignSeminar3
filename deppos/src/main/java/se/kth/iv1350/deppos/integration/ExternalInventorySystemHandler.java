@@ -23,9 +23,9 @@ public class ExternalInventorySystemHandler {
      * Updates the external inventory system after a sale has occured.
      * 
      * @param saleInfo The sale information that contains amount of items sold and
-     *                 so on that is needed to update the inventory.
+     *                 so on that is needed to update the External.
      */
-    public void updateExternalInventorySystem(SaleDTO saleInfo)  throws InventoryConnectionException {
+    public void updateExternalInventorySystem(SaleDTO saleInfo) throws ExternalConnectionException {
         for (ItemDTO itemDTO : saleInfo.getItemMap().values()) {
             int itemId = itemDTO.getItemId();
             simulateThrowDependingOnID(itemId);
@@ -45,19 +45,19 @@ public class ExternalInventorySystemHandler {
      * @throws Exception if the given item ID does not exist in inventory catalog.
      */
 
-    public int checkInventoryQuantity(int id) throws InventoryConnectionException {
+    public int checkInventoryQuantity(int id) throws ExternalConnectionException {
         simulateThrowDependingOnID(id);
 
         return inventoryQuantities[id];
     }
 
     /**
-     * To retrive item information of a specific item from the external inventory.
+     * To retrive item information of a specific item from the external Inventory.
      * 
      * @param id The id of the item that is needed to be fetched.
-     * @throws Exception if the given item ID does not exist in inventory catalog.
+     * @throws Exception if the given item ID does not exist in Inventory catalog.
      */
-    public ItemDTO getItemInfo(int id) throws InventoryConnectionException, ItemNotFoundException {// throws Exception
+    public ItemDTO getItemInfo(int id) throws ExternalConnectionException, ItemNotFoundException {// throws Exception
         simulateThrowDependingOnID(id);
 
         for (ItemDTO item : items) {
@@ -65,14 +65,14 @@ public class ExternalInventorySystemHandler {
                 return item;
             }
         }
-        throw new ItemNotFoundException("The given item ID does not exist in inventory catalog");
+        throw new ItemNotFoundException("The given item ID: " +  id + " does not exist in Inventory catalog");
     }
 
     /**
      * Simulates an error depending on the given items id
      */
-    private void simulateThrowDependingOnID(int id) throws InventoryConnectionException {
-        if (id == -420) {
+    private void simulateThrowDependingOnID(int id) throws ExternalConnectionException {
+        if (id == 3) {
             eh.handleConnectionError();
         }
     }

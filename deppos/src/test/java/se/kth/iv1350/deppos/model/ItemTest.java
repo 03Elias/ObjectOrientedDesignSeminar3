@@ -2,6 +2,7 @@ package se.kth.iv1350.deppos.model;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
+import se.kth.iv1350.deppos.integration.exceptions.*;
 
 import se.kth.iv1350.deppos.integration.MockData;
 
@@ -25,7 +26,7 @@ class ItemTest {
     }
 
     @Test
-    public void testCalculateTotalPriceForAllQuantitiesOfTheItem() {
+    public void testCalculateTotalPriceForAllQuantitiesOfTheItem() throws ItemNotFoundException {
         assertEquals(itemPrice, item.getTotalPrice(), "Total price should be " + itemPrice + " since we only have 1 item");
         item.increaseQuantity(3);
         double totalPrice = itemPrice * 4;

@@ -1,8 +1,7 @@
 package se.kth.iv1350.deppos.model;
 
-import java.util.NoSuchElementException;
-
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
+import se.kth.iv1350.deppos.integration.exceptions.*;
 
 public class Item {
     ItemDTO itemDTO;
@@ -59,13 +58,13 @@ public class Item {
      * @return The total price is returned.
      */
     
-    public double getTotalPrice() throws NoSuchElementException{
+    public double getTotalPrice() throws ItemNotFoundException{
         try {
             double itemPrice = this.itemDTO.getItemPrice();
             return itemPrice * this.quantity;
         } catch (Exception e) {
-            throw new NoSuchElementException("No such element.");
-        } 
+            throw new ItemNotFoundException("No such element.");
+        }
     }
 
     /**

@@ -1,11 +1,10 @@
 package se.kth.iv1350.deppos.controller;
 
-import java.net.ConnectException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import se.kth.iv1350.deppos.integration.exceptions.*;
 import se.kth.iv1350.deppos.model.CashRegister;
 import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
@@ -33,7 +32,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testEnterItem() throws ConnectException{
+    public void testEnterItem() throws ExternalConnectionException, ItemNotFoundException {
         controller.startSale();
         SaleDTO saleInfo = controller.enterItem(0, 1);
         assertEquals(1, saleInfo.getItemMap().size(), "There should be one item in the sale");
@@ -46,7 +45,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testEndSale() throws ConnectException {
+    public void testEndSale() throws ExternalConnectionException, ItemNotFoundException {
         controller.startSale();
         SaleDTO saleInfo = controller.enterItem(0, 1);
         assertNotEquals(0.0, saleInfo.getTotalPrice(), "Double check so we have a running total");
@@ -56,10 +55,49 @@ public class ControllerTest {
     }
 
     @Test
-    public void testApplyDiscount() throws ConnectException {
+    public void testApplyDiscount() throws ExternalConnectionException, ItemNotFoundException {
         controller.startSale();
         SaleDTO saleInfo = controller.enterItem(0, 1);
         assertEquals(0.0, saleInfo.getTotalDiscount(), "StartSale should set totalDiscount to 0.0");
         controller.addDiscount(0);
+    }
+
+    @Test
+    public void testEnterNonExistingItem() {
+        try {
+            controller.startSale();
+            SaleDTO saleInfo = controller.enterItem(-1, 1);
+            fail("The test didn't throw an exception");
+        }
+        catch (ItemNotFoundException e1){
+            assertTrue(e1.getMessage().contains("-1"), "The message didn't contain the id -1");
+        }
+        catch (Exception e2) {
+            fail("ItemNotFoundException was not catched in the test");
+        }
+    }
+
+    
+    /**
+     * Tests that the program throws an Connection exception.
+     * The program simulates a connection exception when an item
+     * with ID 3 is added.
+     * 
+33 //3 Adding aItem 3 an Item with ID 3 will simulate an throw.     * 
+     * 
+     */
+    @Test
+    public void externalConnectionExceptionTest() {
+        try {
+            controller.startSale();
+            SaleDTO saleInfo = controller.enterItem(3, 1);
+            fail("The test didn't throw an exception");
+        }
+        catch (ExternalConnectionException e1){
+            assertTrue(e1.getMessage().contains("No connection to the external"), "The exception message didn't contain: \"No connection to the external\"");
+        }
+        catch (Exception e2) {
+            fail("ExternalConnectionException was not catched in the test");
+        }
     }
 }

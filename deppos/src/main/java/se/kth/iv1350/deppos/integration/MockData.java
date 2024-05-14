@@ -1,5 +1,6 @@
 package se.kth.iv1350.deppos.integration;
 
+import se.kth.iv1350.deppos.integration.exceptions.*;
 import se.kth.iv1350.deppos.model.Item;
 import se.kth.iv1350.deppos.model.Sale;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
@@ -12,7 +13,7 @@ public class MockData {
  *   
  * @return A SaleDTO that contains mock/fake information. 
  */
-    public static SaleDTO getMockSaleDTO() {
+    public static SaleDTO getMockSaleDTO() throws ItemNotFoundException {
         Sale sale = new Sale();
         sale.addItem(getMockItemDTOs()[0], getMockInventoryQuantities()[0]);
         return sale.getSaleDTO();

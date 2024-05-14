@@ -1,9 +1,8 @@
 package se.kth.iv1350.deppos.view;
 
 import java.time.format.DateTimeFormatter;
-import java.util.NoSuchElementException;
-import java.net.ConnectException;
 
+import se.kth.iv1350.deppos.integration.exceptions.*;
 import se.kth.iv1350.deppos.controller.Controller;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.ReceiptDTO;
@@ -99,10 +98,10 @@ public class View {
                     String.format("Total cost (incl VAT): \t%.2f SEK", saleInfo.getTotalPrice()).replace(",", ":"));
             System.out.println(String.format("Total VAT: \t\t%.2f SEK", saleInfo.getTotalVat()).replace(",", ":"));
             System.out.println("-------------------------------------------------");
-        } catch (ConnectException e1) {
+        } catch (ExternalConnectionException e1) {
             System.out.println(e1.getMessage());
 
-        } catch (NoSuchElementException e2) {
+        } catch (ItemNotFoundException e2) {
             System.out.println(e2.getMessage());
         }
         // catch(NullPointerException e3){
@@ -114,7 +113,7 @@ public class View {
         try {
             return contr.amountPaid(amount);
         }
-        catch (ConnectException e) {
+        catch (ExternalConnectionException e) {
             System.out.println(e.getMessage());
         }
         return null;

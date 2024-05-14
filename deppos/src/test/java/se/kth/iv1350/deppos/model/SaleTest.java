@@ -1,7 +1,6 @@
 package se.kth.iv1350.deppos.model;
 
-import java.lang.IllegalArgumentException;
-import java.util.NoSuchElementException;
+import se.kth.iv1350.deppos.integration.exceptions.*;
 
 import se.kth.iv1350.deppos.integration.MockData;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
@@ -21,14 +20,14 @@ public class SaleTest {
     }
 
     @Test
-    void testAddItemIntoCurrentSale() {
+    void testAddItemIntoCurrentSale() throws ItemNotFoundException {
         ItemDTO expResult = itemInfo;
         ItemDTO result = mySale.addItem(itemInfo, 1).getItemMap().get(itemInfo.getItemId());
         assertEquals(expResult, result, "Verify that the item is in the sale");
     }
 
     @Test
-    void testIncreasingItemQuantityOfSaleItem() {
+    void testIncreasingItemQuantityOfSaleItem() throws ItemNotFoundException {
         int expResult = 1;
         int result = mySale.addItem(itemInfo, 1).getItemQuantityMap().get(0);
         assertEquals(expResult, result, "Item quantity should be 1");
@@ -45,7 +44,7 @@ public class SaleTest {
     }
 
     @Test
-    void testCheckIfItemIDIsAlreadyInCurrentSale() {
+    void testCheckIfItemIDIsAlreadyInCurrentSale() throws ItemNotFoundException {
         mySale.addItem(itemInfo, 1);
         boolean expResult = true;
         boolean result = mySale.checkId(0);
@@ -55,19 +54,19 @@ public class SaleTest {
     // Exception Handling Tests, maybe should be moved.//
 
     @Test
-    void testFindItemByInvalidId() {
+    void testFindItemByInvalidId() throws ItemNotFoundException {
         int existentID = itemInfo.getItemId();
         int nonExistentID = -1;
         assertNotEquals(existentID, nonExistentID, "The id's for the test isn't unequal");
 
         mySale.addItem(itemInfo, existentID);
 
-        assertThrows(NoSuchElementException.class, () -> {
+        assertThrows(ItemNotFoundException.class, () -> {
             mySale.findItemById(nonExistentID);
         });
     }
     @Test
-    void testFindItemByValidId(){
+    void testFindItemByValidId() throws ItemNotFoundException {
         int existentID = itemInfo.getItemId();
         int validID = 0;
         assertEquals(existentID, validID, "The id's for the test isn't equal");
