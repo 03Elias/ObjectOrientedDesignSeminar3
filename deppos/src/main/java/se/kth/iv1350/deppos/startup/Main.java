@@ -9,6 +9,7 @@ import se.kth.iv1350.deppos.integration.SalelogHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
 import se.kth.iv1350.deppos.model.CashRegister;
 import se.kth.iv1350.deppos.view.TotalRevenueView;
+import se.kth.iv1350.deppos.view.TotalRevenueFileOutput;
 import se.kth.iv1350.deppos.view.View;
 
 public class Main {
@@ -22,11 +23,13 @@ public class Main {
         DiscountHandler dh = new DiscountHandler();
         SalelogHandler slh = new SalelogHandler();
         TotalRevenueView revenueView = new TotalRevenueView();
+        TotalRevenueFileOutput revenueOutput = new TotalRevenueFileOutput();
         ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();
         ExternalInventorySystemHandler eish = new ExternalInventorySystemHandler();
         CashRegister cr = new CashRegister();
 
         eash.addObserver(revenueView);
+        eash.addObserver(revenueOutput);
 
         Controller controller = new Controller(eish, eash, dh, slh, cr);
         View retailStoreView = new View(controller);

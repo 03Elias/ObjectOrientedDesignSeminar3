@@ -1,8 +1,6 @@
 package se.kth.iv1350.deppos.integration;
 
-import java.net.ConnectException;
-import java.util.NoSuchElementException;
-
+import se.kth.iv1350.deppos.integration.exceptions.*;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
@@ -27,7 +25,7 @@ public class ExternalInventorySystemHandler {
      * @param saleInfo The sale information that contains amount of items sold and
      *                 so on that is needed to update the inventory.
      */
-    public void updateExternalInventorySystem(SaleDTO saleInfo) throws ConnectException {
+    public void updateExternalInventorySystem(SaleDTO saleInfo)  throws InventoryConnectionException {
         for (ItemDTO itemDTO : saleInfo.getItemMap().values()) {
             int itemId = itemDTO.getItemId();
             simulateThrowDependingOnID(itemId);
@@ -44,11 +42,10 @@ public class ExternalInventorySystemHandler {
      * @param id Identifies the desired item.
      * @return The quantity of the desired item that is stored in the external
      *         inventory system.
-     * @throws ConnectException Signals that no connection to the inventory system
-     *                          were able to be made.
+     * @throws Exception if the given item ID does not exist in inventory catalog.
      */
 
-    public int checkInventoryQuantity(int id) throws ConnectException {
+    public int checkInventoryQuantity(int id) throws InventoryConnectionException {
         simulateThrowDependingOnID(id);
 
         return inventoryQuantities[id];
@@ -60,7 +57,7 @@ public class ExternalInventorySystemHandler {
      * @param id The id of the item that is needed to be fetched.
      * @throws Exception if the given item ID does not exist in inventory catalog.
      */
-    public ItemDTO getItemInfo(int id) throws ConnectException, NoSuchElementException {// throws Exception
+    public ItemDTO getItemInfo(int id) throws InventoryConnectionException, ItemNotFoundException {// throws Exception
         simulateThrowDependingOnID(id);
 
         for (ItemDTO item : items) {
@@ -68,13 +65,13 @@ public class ExternalInventorySystemHandler {
                 return item;
             }
         }
-        throw new NoSuchElementException("The given item ID does not exist in inventory catalog");
+        throw new ItemNotFoundException("The given item ID does not exist in inventory catalog");
     }
 
     /**
      * Simulates an error depending on the given items id
      */
-    private void simulateThrowDependingOnID(int id) throws ConnectException {
+    private void simulateThrowDependingOnID(int id) throws InventoryConnectionException {
         if (id == -420) {
             eh.handleConnectionError();
         }

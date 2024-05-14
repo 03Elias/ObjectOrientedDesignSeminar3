@@ -1,9 +1,10 @@
 package se.kth.iv1350.deppos.integration;
 
-import java.net.ConnectException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.NoSuchElementException;
+
+import se.kth.iv1350.deppos.integration.exceptions.*;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,11 @@ public class ExceptionHandler {
     private PrintWriter printWriter;
     private String system;
 
+    /**
+     * Constructor for ExceptionHandler
+     * 
+     * @param system the name of the external system
+     */
     public ExceptionHandler(String system){
         try {
             fileWriter = new FileWriter("errorLog.txt", true);
@@ -23,35 +29,36 @@ public class ExceptionHandler {
         this.system = system;
     }
     
-    public void handleConnectionError() throws ConnectException {
-        //System.out.println("No connection to the external " + this.system + " system.");
+    /**
+     * Handles an exception that occurs when there is no connection to the external system.
+     * 
+     * @throws InventoryInventoryConnectException
+     */
+    public void handleConnectionError() throws InventoryConnectionException {
+        InventoryConnectionException inventoryConnectException = new InventoryConnectionException("No connection to the external " + this.system + " system.");
+        logException(inventoryConnectException);
 
-        ConnectException connectException = new ConnectException("No connection to the external " + this.system + " system.");
-        logException(connectException);
-
-        throw connectException;
+        throw inventoryConnectException;
     }
 
 
-    
-    public void handleNoSuchElementError() throws NoSuchElementException{
-        //System.out.println("No connection to the external " + this.system + " system.");
+    /**
+     * Handles an exception that occurs when there is no such ID
+     * 
+     * @throws ItemNotFoundException
+     */
+    public void handleNoSuchElementError() throws ItemNotFoundException{
+        ItemNotFoundException itemNotFoundException = new ItemNotFoundException("No such ID");
+        logException(itemNotFoundException);
 
-        NoSuchElementException noSuchElementException = new NoSuchElementException("No such ID");
-        logException(noSuchElementException);
-
-        throw noSuchElementException;
+        throw itemNotFoundException;
     }
 
-    public void handleNullPointerError() throws NullPointerException{
-        //System.out.println("No connection to the external " + this.system + " system.");
-
-        NullPointerException nullPointerException = new NullPointerException("ItemInfo can not be null/empty");
-        logException(nullPointerException);
-
-        throw nullPointerException;
-    }
-
+    /**
+     * Logs the exception to the errorLog.txt
+     * 
+     * @param exception the exception
+     */
     private void logException(Exception exception) {
         LocalDateTime timeStamp = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
