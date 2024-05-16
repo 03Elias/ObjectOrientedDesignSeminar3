@@ -92,7 +92,7 @@ public class Controller {
      */
     public SaleDTO addDiscount(int customerID) {
         SaleDTO saleInfo = sale.getSaleDTO();
-        double discountAmount = dh.getDiscount(customerID, saleInfo);
+        double discountAmount = dh.getDiscount(saleInfo, customerID);
 
         return sale.applyDiscount(discountAmount);
     }

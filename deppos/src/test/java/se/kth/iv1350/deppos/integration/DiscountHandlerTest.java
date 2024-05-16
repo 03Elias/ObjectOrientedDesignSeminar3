@@ -30,9 +30,8 @@ public class DiscountHandlerTest {
     @Test
     public void testGetDiscount() {
         dh = new DiscountHandler();
-        double itemsDiscount = itemPrices.get(0) * itemQuantities.get(0) * 0.1;
-        totalDiscount = itemsDiscount + (totalPrice - itemsDiscount) * 0.1;
-        double discount = dh.getDiscount(customerID, saleInfo);
+        totalDiscount = totalPrice * 0.1;
+        double discount = dh.getDiscount(saleInfo, customerID);
         assertEquals(totalDiscount, discount);
     }
 }

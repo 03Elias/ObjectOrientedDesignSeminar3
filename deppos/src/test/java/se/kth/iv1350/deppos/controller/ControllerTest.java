@@ -22,7 +22,7 @@ public class ControllerTest {
 
     @BeforeEach
     public void setup() {
-        cashRegister = new CashRegister();
+        cashRegister = CashRegister.getRegister();
         eish = new ExternalInventorySystemHandler();
         eash = new ExternalAccountSystemHandler();
         dh = new DiscountHandler();

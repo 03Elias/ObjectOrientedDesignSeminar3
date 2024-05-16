@@ -13,7 +13,7 @@ public class CashRegisterTest {
 
     @BeforeEach
     public void setup() {
-        cashRegister = new CashRegister();
+        cashRegister = CashRegister.getRegister();
         saleInfo = new SaleDTO(33.0, 3.0, null, null, 5.0);
     }
 

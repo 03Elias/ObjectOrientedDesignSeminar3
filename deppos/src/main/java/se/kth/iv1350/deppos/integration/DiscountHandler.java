@@ -3,25 +3,24 @@ package se.kth.iv1350.deppos.integration;
 import java.util.HashMap;
 import java.util.Map;
 
+import se.kth.iv1350.deppos.model.CustomerDiscount;
+import se.kth.iv1350.deppos.model.ItemDiscount;
+import se.kth.iv1350.deppos.model.StoreDiscount;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
-public class DiscountHandler {
-    //Mockdata
-    private double currentStoreDiscount;
-    private int[] customerIds;
-    private double customerDiscount;
-    private Map<Integer, Double> itemDiscounts = new HashMap<>();
+public class DiscountHandler { // TO ASK: Should this class also implement the interface?
+                               // (that would mean changing getDiscount() to calculateDiscount)
+    // Mockdata
+    private int discountStrategyNr = 1;
+    private double discount = 0.0;
 
     /**
      * Starts an new instance of DiscountHandler.
      * 
      */
     public DiscountHandler() {
-        currentStoreDiscount = 0.05;
-        customerIds = new int[]{1};
-        customerDiscount = 0.1;
-        itemDiscounts.put(0, 0.1);
+
     }
 
     /**
@@ -35,53 +34,20 @@ public class DiscountHandler {
      * 
      * @return The discount amount for the sale.
      */
-    public double getDiscount(int customerID, SaleDTO saleDTO) {
-        double discount = 0.0;
-        double totalSalePrice = saleDTO.getTotalPrice();
-    
-        for (ItemDTO itemDTO : saleDTO.getItemMap().values()) {
-            int quantity = saleDTO.getItemQuantityMap().get(itemDTO.getItemId());
-            discount += getItemDiscount(itemDTO) * quantity;
+    public double getDiscount(SaleDTO saleDTO, int customerID) {
+
+        if (discountStrategyNr == 1) {
+            CustomerDiscount customerDiscount = new CustomerDiscount();
+            discount = customerDiscount.calculateDiscount(saleDTO, customerID);
+        } else if (discountStrategyNr == 2) {
+            ItemDiscount itemDiscount = new ItemDiscount();
+            discount = itemDiscount.calculateDiscount(saleDTO, customerID);
+        } else {
+            StoreDiscount storeDiscount = new StoreDiscount();
+            discount = storeDiscount.calculateDiscount(saleDTO, customerID);
         }
-    
-        discount += (totalSalePrice - discount) * (customerDiscount > currentStoreDiscount && isCustomer(customerID) ? customerDiscount : currentStoreDiscount);
-    
+
         return discount;
     }
-    
 
-    /**
-     * Retrives the discount for an item.
-     * 
-     * @param itemDTO The DTO of the item that is needed to determine the discount.
-     * 
-     * @return The discount for the item.
-     * 
-     */
-    private double getItemDiscount(ItemDTO itemDTO) {
-        double itemDiscount = 0.0;
-    
-        if (itemDiscounts.containsKey(itemDTO.getItemId())) {
-            double discountRate = itemDiscounts.get(itemDTO.getItemId());
-            itemDiscount = itemDTO.getItemPrice() * discountRate;
-        }
-    
-        return itemDiscount;
-    }
-
-    /**
-     * Checks if a customer is a vipCustomer.
-     * 
-     * @param customerID
-     * 
-     * @return If the customer is a vipCustomer or not.
-     */
-    private boolean isCustomer(int customerID) {
-        for(int id : customerIds) {
-            if(id == customerID) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

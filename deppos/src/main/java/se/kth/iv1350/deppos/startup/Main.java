@@ -25,7 +25,7 @@ public class Main {
         TotalRevenueFileOutput revenueOutput = new TotalRevenueFileOutput();
         ExternalAccountSystemHandler eash = new ExternalAccountSystemHandler();
         ExternalInventorySystemHandler eish = new ExternalInventorySystemHandler();
-        CashRegister cr = CashRegister.getInstance();
+        CashRegister cr = CashRegister.getRegister();
 
         eash.addObserver(revenueView);
         eash.addObserver(revenueOutput);
