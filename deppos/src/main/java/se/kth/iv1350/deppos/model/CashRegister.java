@@ -4,13 +4,21 @@ import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class CashRegister {
     private double cashInRegister;
+    private static CashRegister instance; 
 
     /**
      * Constructor for CashRegister.
      * 
      */
-    public CashRegister() {
+    private CashRegister() {
         cashInRegister = 0;
+    }
+
+    public static CashRegister getInstance() {
+        if(instance == null) {
+            instance = new CashRegister();
+        }
+        return new CashRegister();
     }
 
     /**
