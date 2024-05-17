@@ -15,7 +15,7 @@ public class StoreDiscount implements DiscountStrategyInterface {
     @Override
     public double calculateDiscount(SaleDTO saleDTO, int customerID) {
         double totalSalePrice = saleDTO.getTotalPrice();
-        return totalSalePrice * (1.0 - storeDiscount);
+        return totalSalePrice * storeDiscount;
     }
 }
 
