@@ -15,12 +15,13 @@ public class ItemDiscount implements DiscountStrategyInterface {
 
     @Override
     public double calculateDiscount(SaleDTO saleDTO,  int customerID) {
-        double discount = 0.0;
+        double discountAmount = 0.0;
         for (ItemDTO itemDTO : saleDTO.getItemMap().values()) {
             int quantity = saleDTO.getItemQuantityMap().get(itemDTO.getItemId());
-            discount += getItemDiscount(itemDTO) * quantity;
+            discountAmount += getItemDiscount(itemDTO) * quantity;
         }
-        return discount;
+       
+        return discountAmount;
     }
 
     /**
