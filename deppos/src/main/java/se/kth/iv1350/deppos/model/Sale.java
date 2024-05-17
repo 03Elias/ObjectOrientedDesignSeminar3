@@ -114,14 +114,15 @@ public class Sale {
 
     /**
      * Applies the discount on the current sale based on the discount info.
+     * @param ds The discount strategy that is used.
+     * @param customerID 
      * 
-     * @param discountAmount Gives the discount information based on the current
-     *                       sale.
      * @return The applicable discount is returned in the SaleDTO which contains the
      *         Sale information.
      */
-    public SaleDTO applyDiscount(double discountAmount) {
-        this.totalDiscount = discountAmount;
+    public SaleDTO applyDiscount(DiscountStrategyInterface ds, int customerID) {
+        
+        this.totalDiscount = ds.calculateDiscount(getSaleDTO(), customerID);
         return getSaleDTO();
     }
 }

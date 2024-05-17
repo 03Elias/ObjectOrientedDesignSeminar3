@@ -1,7 +1,6 @@
 package se.kth.iv1350.deppos.startup;
 
 import se.kth.iv1350.deppos.controller.Controller;
-import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.SalelogHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
@@ -19,7 +18,6 @@ public class Main {
      * @param args Command-line argument passed to the application.
      */
     public static void main(String[] args) throws ExternalConnectionException {
-        DiscountHandler dh = new DiscountHandler();
         SalelogHandler slh = new SalelogHandler();
         TotalRevenueView revenueView = new TotalRevenueView();
         TotalRevenueFileOutput revenueOutput = new TotalRevenueFileOutput();
@@ -30,7 +28,7 @@ public class Main {
         eash.addObserver(revenueView);
         eash.addObserver(revenueOutput);
 
-        Controller controller = new Controller(eish, eash, dh, slh, cr);
+        Controller controller = new Controller(eish, eash, slh, cr);
         View retailStoreView = new View(controller);
 
         if(args != null) {

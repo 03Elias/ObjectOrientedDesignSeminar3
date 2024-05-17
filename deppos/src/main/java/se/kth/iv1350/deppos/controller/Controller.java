@@ -1,9 +1,10 @@
 package se.kth.iv1350.deppos.controller;
-
+import se.kth.iv1350.deppos.integration.StoreDiscount;
 import se.kth.iv1350.deppos.integration.exceptions.*;
-import se.kth.iv1350.deppos.integration.DiscountHandler;
+import se.kth.iv1350.deppos.integration.CustomerDiscount;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
+import se.kth.iv1350.deppos.integration.ItemDiscount;
 import se.kth.iv1350.deppos.integration.SalelogHandler;
 import se.kth.iv1350.deppos.integration.exceptions.ExternalConnectionException;
 import se.kth.iv1350.deppos.model.CashRegister;
@@ -17,7 +18,6 @@ public class Controller {
     private CashRegister cashRegister;
     private ExternalInventorySystemHandler eish;
     private ExternalAccountSystemHandler eash;
-    private DiscountHandler dh;
     private SalelogHandler slh;
 
     /**
@@ -29,17 +29,15 @@ public class Controller {
      *                     ExternalInventorySystemHandler.
      * @param eash         is an instance of the object
      *                     ExternalAccountSystemHandler.
-     * @param dh           is an instance of the object DiscountHandler.
      * @param slh          is an instance of the object SalelogHandler.
      */
 
-    public Controller(ExternalInventorySystemHandler eish, ExternalAccountSystemHandler eash, DiscountHandler dh,
+    public Controller(ExternalInventorySystemHandler eish, ExternalAccountSystemHandler eash,
             SalelogHandler slh, CashRegister cashRegister) {
 
         this.cashRegister = cashRegister;
         this.eish = eish;
         this.eash = eash;
-        this.dh = dh;
         this.slh = slh;
     }
 
@@ -92,19 +90,29 @@ public class Controller {
      */
     public SaleDTO addDiscount(int customerID) {
         SaleDTO saleInfo = sale.getSaleDTO();
-        double discountAmount = dh.getDiscount(saleInfo, customerID);
 
-        return sale.applyDiscount(discountAmount);
+        //double discountAmount = 0.0;
+        //ItemDiscount itemDiscount = new ItemDiscount();
+        //discountAmount = itemDiscount.calculateDiscount(saleInfo, customerID);
+        
+        //StoreDiscount storeDiscount = new StoreDiscount();
+        //discountAmount = storeDiscount.calculateDiscount(saleInfo, customerID);
+        
+        //discountAmount = customerDiscount.calculateDiscount(saleInfo, customerID);
+
+        CustomerDiscount customerDiscount = new CustomerDiscount();
+        return sale.applyDiscount(customerDiscount, customerID);
     }
 
     /**
-     * Showcases the amount paid from the customer. Updates the external systems as well as the register.
+     * Showcases the amount paid from the customer. Updates the external systems as
+     * well as the register.
      * Also adds a sale to the salelog.
      * 
      * @param amountPaid The amount that the customer paid.
      * 
      * @return The receipt of the sale.
-     * @throws ExternalConnectionException if there is an error with the inventory 
+     * @throws ExternalConnectionException if there is an error with the inventory
      */
     public ReceiptDTO amountPaid(double amountPaid) throws ExternalConnectionException {
         SaleDTO saleInfo = sale.getSaleDTO();

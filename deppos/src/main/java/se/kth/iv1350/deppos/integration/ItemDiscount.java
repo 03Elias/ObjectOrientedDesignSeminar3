@@ -1,15 +1,15 @@
-package se.kth.iv1350.deppos.model;
+package se.kth.iv1350.deppos.integration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import se.kth.iv1350.deppos.integration.DiscountHandler;
+import se.kth.iv1350.deppos.model.DiscountStrategyInterface;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
 
 public class ItemDiscount implements DiscountStrategyInterface {
     private Map<Integer, Double> itemDiscounts = new HashMap<>();
-    double itemDiscount = 0.05;
+    double itemDiscount = 0.10;
 
    
 

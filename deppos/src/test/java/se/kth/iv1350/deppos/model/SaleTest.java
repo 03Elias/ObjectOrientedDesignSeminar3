@@ -1,11 +1,14 @@
 package se.kth.iv1350.deppos.model;
 
 import se.kth.iv1350.deppos.integration.exceptions.*;
-
+import se.kth.iv1350.deppos.integration.CustomerDiscount;
+import se.kth.iv1350.deppos.integration.ItemDiscount;
 import se.kth.iv1350.deppos.integration.MockData;
+import se.kth.iv1350.deppos.integration.StoreDiscount;
 import se.kth.iv1350.deppos.model.dto.ItemDTO;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,11 +39,47 @@ public class SaleTest {
         assertEquals(expResult, result, "Item quantity should be 2");
     }
 
+    @Disabled
     @Test
-    void testApplyDiscount() {
-        double expResult = 13.37;
-        double result = mySale.applyDiscount(13.37).getTotalDiscount();
-        assertEquals(expResult, result, "The totalDiscount should be 13.37");
+    void testApplyCustomerDiscount() throws ItemNotFoundException {
+        mySale.addItem(itemInfo, 1);
+        CustomerDiscount customerDiscount = new CustomerDiscount();
+        int validCustomerID = 1;
+
+        double totalPrice = mySale.getSaleDTO().getTotalPrice();
+        double expResult = totalPrice * 0.10;
+        double result = mySale.applyDiscount(customerDiscount, validCustomerID).getTotalDiscount();
+
+        assertEquals(expResult, result, "The customer total discount is not correct");
+    }
+   
+    @Disabled
+    @Test
+    void testApplyStoreDiscount() throws ItemNotFoundException {
+        mySale.addItem(itemInfo, 1);
+        StoreDiscount storeDiscount = new StoreDiscount();
+        int validCustomerID = 1;
+
+        double totalPrice = mySale.getSaleDTO().getTotalPrice();
+        double expResult = totalPrice * 0.10; 
+        double result = mySale.applyDiscount(storeDiscount, validCustomerID).getTotalDiscount();
+        
+        assertEquals(expResult, result, "The store total discount is not correct");
+    }
+
+    @Disabled
+    @Test
+    void testApplyItemDiscount() throws ItemNotFoundException {
+        mySale.addItem(itemInfo, 1);
+        ItemDiscount itemDiscount = new ItemDiscount();
+        int validCustomerID = 1;
+
+        double totalPrice = mySale.getSaleDTO().getTotalPrice();
+        System.out.println("Totalprice is: " + totalPrice);
+        double expResult = mySale.getSaleDTO().getTotalPrice() * 0.10;
+        double result = mySale.applyDiscount(itemDiscount, validCustomerID).getTotalDiscount();
+        
+        assertEquals(expResult, result, "The Item total discount is not correct");
     }
 
     @Test

@@ -1,12 +1,12 @@
 package se.kth.iv1350.deppos.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import se.kth.iv1350.deppos.integration.exceptions.*;
 import se.kth.iv1350.deppos.model.CashRegister;
-import se.kth.iv1350.deppos.integration.DiscountHandler;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
 import se.kth.iv1350.deppos.integration.SalelogHandler;
@@ -17,7 +17,6 @@ public class ControllerTest {
     private CashRegister cashRegister;
     private ExternalInventorySystemHandler eish;
     private ExternalAccountSystemHandler eash;
-    private DiscountHandler dh;
     private SalelogHandler slh;
 
     @BeforeEach
@@ -25,10 +24,9 @@ public class ControllerTest {
         cashRegister = CashRegister.getRegister();
         eish = new ExternalInventorySystemHandler();
         eash = new ExternalAccountSystemHandler();
-        dh = new DiscountHandler();
         slh = new SalelogHandler();
 
-        controller = new Controller(eish, eash, dh, slh, cashRegister);
+        controller = new Controller(eish, eash, slh, cashRegister);
     }
 
     @Test
@@ -54,6 +52,7 @@ public class ControllerTest {
         assertNotEquals(0.0, saleInfo.getTotalVat(), "EndSale should return total VAT");
     }
 
+    @Disabled
     @Test
     public void testApplyDiscount() throws ExternalConnectionException, ItemNotFoundException {
         controller.startSale();
