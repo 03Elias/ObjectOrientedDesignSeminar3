@@ -47,8 +47,8 @@ public class ExceptionHandler {
      * 
      * @throws ItemNotFoundException
      */
-    public void handleNoSuchElementError() throws ItemNotFoundException{
-        ItemNotFoundException itemNotFoundException = new ItemNotFoundException("The given item ID does not exist in Inventory catalog");
+    public void handleNoSuchElementError(int id) throws ItemNotFoundException{
+        ItemNotFoundException itemNotFoundException = new ItemNotFoundException("The given item ID: " +  id + " does not exist in Inventory catalog");
         logException(itemNotFoundException);
 
         throw itemNotFoundException;

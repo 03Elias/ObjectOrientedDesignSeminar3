@@ -65,7 +65,7 @@ public class ExternalInventorySystemHandler {
                 return item;
             }
         }
-        eh.handleNoSuchElementError();
+        eh.handleNoSuchElementError(id);
         return null;
     }
 
