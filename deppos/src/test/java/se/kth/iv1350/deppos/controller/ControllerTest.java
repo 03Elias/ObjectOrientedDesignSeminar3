@@ -65,7 +65,7 @@ public class ControllerTest {
     public void testEnterNonExistingItem() {
         try {
             controller.startSale();
-            SaleDTO saleInfo = controller.enterItem(-1, 1);
+            controller.enterItem(-1, 1);
             fail("The test didn't throw an exception");
         }
         catch (ItemNotFoundException e1){
@@ -81,15 +81,12 @@ public class ControllerTest {
      * Tests that the program throws an Connection exception.
      * The program simulates a connection exception when an item
      * with ID 3 is added.
-     * 
-33 //3 Adding aItem 3 an Item with ID 3 will simulate an throw.     * 
-     * 
      */
     @Test
     public void externalConnectionExceptionTest() {
         try {
             controller.startSale();
-            SaleDTO saleInfo = controller.enterItem(3, 1);
+            controller.enterItem(3, 1);
             fail("The test didn't throw an exception");
         }
         catch (ExternalConnectionException e1){

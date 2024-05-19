@@ -1,10 +1,8 @@
 package se.kth.iv1350.deppos.controller;
-import se.kth.iv1350.deppos.integration.StoreDiscount;
 import se.kth.iv1350.deppos.integration.exceptions.*;
 import se.kth.iv1350.deppos.integration.CustomerDiscount;
 import se.kth.iv1350.deppos.integration.ExternalAccountSystemHandler;
 import se.kth.iv1350.deppos.integration.ExternalInventorySystemHandler;
-import se.kth.iv1350.deppos.integration.ItemDiscount;
 import se.kth.iv1350.deppos.integration.SalelogHandler;
 import se.kth.iv1350.deppos.integration.exceptions.ExternalConnectionException;
 import se.kth.iv1350.deppos.model.CashRegister;
@@ -63,8 +61,12 @@ public class Controller {
         if (sale.checkId(id)) {
             sale.increaseItemQuantity(id, quantity);
         } else {
-            ItemDTO itemInfo = eish.getItemInfo(id);
-            sale.addItem(itemInfo, quantity);
+            try{
+                ItemDTO itemInfo = eish.getItemInfo(id);
+                sale.addItem(itemInfo, quantity);
+            } catch (Exception e){
+                throw e;
+            }
         }
 
         return sale.getSaleDTO();
@@ -89,17 +91,6 @@ public class Controller {
      *         including the added discount.
      */
     public SaleDTO addDiscount(int customerID) {
-        SaleDTO saleInfo = sale.getSaleDTO();
-
-        //double discountAmount = 0.0;
-        //ItemDiscount itemDiscount = new ItemDiscount();
-        //discountAmount = itemDiscount.calculateDiscount(saleInfo, customerID);
-        
-        //StoreDiscount storeDiscount = new StoreDiscount();
-        //discountAmount = storeDiscount.calculateDiscount(saleInfo, customerID);
-        
-        //discountAmount = customerDiscount.calculateDiscount(saleInfo, customerID);
-
         CustomerDiscount customerDiscount = new CustomerDiscount();
         return sale.applyDiscount(customerDiscount, customerID);
     }

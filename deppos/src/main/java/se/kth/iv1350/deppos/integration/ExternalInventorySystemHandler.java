@@ -57,7 +57,7 @@ public class ExternalInventorySystemHandler {
      * @param id The id of the item that is needed to be fetched.
      * @throws Exception if the given item ID does not exist in Inventory catalog.
      */
-    public ItemDTO getItemInfo(int id) throws ExternalConnectionException, ItemNotFoundException {// throws Exception
+    public ItemDTO getItemInfo(int id) throws ExternalConnectionException, ItemNotFoundException {
         simulateThrowDependingOnID(id);
 
         for (ItemDTO item : items) {
@@ -65,7 +65,8 @@ public class ExternalInventorySystemHandler {
                 return item;
             }
         }
-        throw new ItemNotFoundException("The given item ID: " +  id + " does not exist in Inventory catalog");
+        eh.handleNoSuchElementError();
+        return null;
     }
 
     /**

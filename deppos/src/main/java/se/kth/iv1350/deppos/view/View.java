@@ -82,7 +82,7 @@ public class View {
      *                 sale.
      * 
      */
-    private void addItem(int id, int quantity) {
+    private void addItem(int id, int quantity)  {
         try {
             SaleDTO saleInfo = contr.enterItem(id, quantity);
             ItemDTO itemInfo = saleInfo.getItemMap().get(id);
@@ -104,9 +104,6 @@ public class View {
         } catch (ItemNotFoundException e2) {
             System.out.println(e2.getMessage());
         }
-        // catch(NullPointerException e3){
-        //     System.out.println(e3.getMessage());
-        // }
     }
 
     private ReceiptDTO amountPaid(double amount){

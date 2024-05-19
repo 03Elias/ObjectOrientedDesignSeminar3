@@ -90,8 +90,6 @@ public class SaleTest {
         assertEquals(expResult, result, "Program didn't found ID for item that was added");
     }
 
-    // Exception Handling Tests, maybe should be moved.//
-
     @Test
     void testFindItemByInvalidId() throws ItemNotFoundException {
         int existentID = itemInfo.getItemId();
