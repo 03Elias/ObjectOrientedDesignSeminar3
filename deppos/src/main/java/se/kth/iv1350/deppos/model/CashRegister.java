@@ -6,14 +6,16 @@ public class CashRegister {
     private double cashInRegister;
     private static CashRegister register; 
 
-    /**
-     * Constructor for CashRegister.
-     * 
-     */
+   
     private CashRegister() {
         cashInRegister = 0;
     }
 
+    /**
+     * The method returns the cash register.
+     * 
+     * @return The cash register.
+     */
     public static CashRegister getRegister() {
         if(register == null) {
             register = new CashRegister();
