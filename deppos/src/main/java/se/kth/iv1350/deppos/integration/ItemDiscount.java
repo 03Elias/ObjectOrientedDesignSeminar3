@@ -12,7 +12,13 @@ public class ItemDiscount implements DiscountStrategyInterface {
     double itemDiscount = 0.10;
 
    
-
+    /**
+     * calculates the discount for a sale.
+     * @param saleDTO The DTO of the sale that is needed to determine the discount.
+     * @param customerID The ID of the customer that is needed to determine the discount.
+     * 
+     * @return The discount for the sale.
+     */
     @Override
     public double calculateDiscount(SaleDTO saleDTO,  int customerID) {
         double discountAmount = 0.0;
