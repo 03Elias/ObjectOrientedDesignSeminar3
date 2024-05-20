@@ -3,7 +3,7 @@ package se.kth.iv1350.deppos.integration.exceptions;
 /**
  * Thrown when there is a connection error to the inventory system.
  */
-public class ExternalConnectionException extends Exception {
+public class ExternalConnectionException extends RuntimeException {
 
     /**
      * Creates a new instance with the specified error message.
