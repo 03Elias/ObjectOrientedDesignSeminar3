@@ -31,8 +31,7 @@ public class ExceptionHandler {
     
     /**
      * Handles an exception that occurs when there is no connection to the external system.
-     * 
-     * @throws ExternalExternalConnectException
+     * @throws ExternalConnectionException if there is an error with connecting to the inventory.
      */
     public void handleConnectionError() throws ExternalConnectionException {
         ExternalConnectionException ExternalConnectException = new ExternalConnectionException("No connection to the external " + this.system + " system.");
@@ -45,7 +44,7 @@ public class ExceptionHandler {
     /**
      * Handles an exception that occurs when there is no such ID
      * 
-     * @throws ItemNotFoundException
+     * @throws ItemNotFoundException If the item is not found in the inventory. 
      */
     public void handleNoSuchElementError(int id) throws ItemNotFoundException{
         ItemNotFoundException itemNotFoundException = new ItemNotFoundException("The given item ID: " +  id + " does not exist in Inventory catalog");

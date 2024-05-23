@@ -54,7 +54,7 @@ public class Item {
 
     /**
      * Gets the total price of the item.
-     * 
+     * @throws ItemNotFoundException If the item does not exist in the inventory.
      * @return The total price is returned.
      */
     

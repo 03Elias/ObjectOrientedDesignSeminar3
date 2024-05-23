@@ -53,6 +53,8 @@ public class Controller {
      *                 added into the sale.
      * @param quantity The amount of this said item that will be added into the
      *                 sale.
+     * @throws ItemNotFoundException If the item is not found in the inventory. 
+     * @throws ExternalConnectionException if there is an error with connecting to the inventory.
      * @return A SaleDTO object containing the updated sale information, which
      *         includes the details of the entered item
      *         and the updated total amount of the sale, etc.

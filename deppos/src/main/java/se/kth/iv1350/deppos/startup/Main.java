@@ -14,7 +14,7 @@ public class Main {
 
     /**
      * The intiliazer for the application. Starts the application.
-     * 
+     * @throws ExternalConnectionException if there is an error with connecting to the inventory.
      * @param args Command-line argument passed to the application.
      */
     public static void main(String[] args) throws ExternalConnectionException {

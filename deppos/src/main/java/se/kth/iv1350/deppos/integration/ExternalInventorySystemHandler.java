@@ -24,6 +24,7 @@ public class ExternalInventorySystemHandler {
      * 
      * @param saleInfo The sale information that contains amount of items sold and
      *                 so on that is needed to update the External.
+     * @throws ExternalConnectionException if there is an error with connecting to the inventory.
      */
     public void updateExternalInventorySystem(SaleDTO saleInfo) throws ExternalConnectionException {
         for (ItemDTO itemDTO : saleInfo.getItemMap().values()) {
@@ -71,6 +72,7 @@ public class ExternalInventorySystemHandler {
 
     /**
      * Simulates an error depending on the given items id
+     * @throws ExternalConnectionException if there is an error with connecting to the inventory.
      */
     private void simulateThrowDependingOnID(int id) throws ExternalConnectionException {
         if (id == 3) {

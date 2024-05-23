@@ -48,6 +48,7 @@ public class Sale {
      * 
      * @param itemInfo Information about the item.
      * @param quantity The quantity of the desired item.
+     * @throws ItemNotFoundException If the item is not found in the inventory.
      * @return The updated sale with the SaleDTO.
      */
 
@@ -64,6 +65,7 @@ public class Sale {
      * 
      * @param id            Is the identifier of the item.
      * @param quantityToAdd The increased quantity that is desired for the item.
+     * @throws ItemNotFoundException If the item is not found in the inventory.
      * @return The SaleDTO is returned which contains the sale information of the
      *         current sale.
      */
@@ -88,8 +90,7 @@ public class Sale {
      * 
      * @param id The identifier of the item.
      * @return The item is returned.
-     * @throws IllegalArgumentException detects and throws an exception if the ID
-     *                                  does not exist in the inventory catalog.
+     * @throws ItemNotFoundException If the item is not found in the inventory.
      */
     public Item findItemById(int id) throws ItemNotFoundException {
         for (Item item : items) {

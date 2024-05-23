@@ -10,7 +10,7 @@ public class MockData {
 
 /**
  * A method for getting the "fake/mock" SaleDTO.
- *   
+ * @throws ItemNotFoundException If the item is not found in the inventory.  
  * @return A SaleDTO that contains mock/fake information. 
  */
     public static SaleDTO getMockSaleDTO() throws ItemNotFoundException {
