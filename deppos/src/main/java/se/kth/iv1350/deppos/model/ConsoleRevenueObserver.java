@@ -1,7 +1,7 @@
 package se.kth.iv1350.deppos.model;
 
 public class ConsoleRevenueObserver extends RevenueObserver {
-    protected double totalIncome = 0;
+    protected double totalIncome = 0.0;
 
 
     /**

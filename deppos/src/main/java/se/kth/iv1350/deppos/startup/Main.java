@@ -36,8 +36,8 @@ public class Main {
         View retailStoreView = new View(controller);
 
         if (args != null) {
-            //retailStoreView.sampleRun();
-            sampleRunInheritanceComposition();
+            retailStoreView.sampleRun();
+            //sampleRunInheritanceComposition();
         }
     }
 
