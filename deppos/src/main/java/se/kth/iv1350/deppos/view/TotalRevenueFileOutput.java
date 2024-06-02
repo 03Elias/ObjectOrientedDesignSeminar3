@@ -1,15 +1,21 @@
 package se.kth.iv1350.deppos.view;
 
-import se.kth.iv1350.deppos.model.RevenueObserver;
+//import se.kth.iv1350.deppos.model.RevenueObserver;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class TotalRevenueFileOutput implements RevenueObserver{
+import se.kth.iv1350.deppos.model.ConsoleRevenueObserver;
+
+public class TotalRevenueFileOutput extends ConsoleRevenueObserver{
     private String filename = "revenue.txt";
     
+    /**
+     * Writes the total amount of money to the file.
+     * @param totalAmountOfMoney The total amount of money to be written to the file.
+     */
     @Override
     public void update(double totalAmountOfMoney) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename, false))) {
@@ -19,4 +25,6 @@ public class TotalRevenueFileOutput implements RevenueObserver{
             e.printStackTrace();
         }
     }
+
+  
 }

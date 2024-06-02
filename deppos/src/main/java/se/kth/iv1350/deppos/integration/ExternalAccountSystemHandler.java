@@ -16,18 +16,19 @@ public class ExternalAccountSystemHandler {
      * with the External Account System.
      */
     public ExternalAccountSystemHandler() {
-        totalAmountOfMoney = 0;
+        double totalAmountOfMoney = 0;
     }
 
     /**
-     * updates the external account system after a sale has occured.
+     * updates the external account system after a sale has occured and notifies the observers.
      * 
      * @param saleInfo The sale information that contains the total price, costs,
      *                 etc that is needed to update the account.
      */
     public void updateExternalAccountSystem(SaleDTO saleInfo) {
-        totalAmountOfMoney += saleInfo.getTotalPrice() - saleInfo.getTotalDiscount();
-        notifyObservers();
+        double totalRevenueOfLastSale = saleInfo.getTotalPrice() - saleInfo.getTotalDiscount();
+        totalAmountOfMoney += totalRevenueOfLastSale;
+        notifyObservers(totalRevenueOfLastSale);
     }
 
     /**
@@ -62,9 +63,9 @@ public class ExternalAccountSystemHandler {
      * 
      * @param observer The observer to be notified.
      */
-    private void notifyObservers() {
+    private void notifyObservers(double totalRevenueOfLastSale) {
         for (RevenueObserver observer : observers) {
-            observer.update(totalAmountOfMoney);
+            observer.update(totalRevenueOfLastSale);
         }
     }
 }
