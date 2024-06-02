@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -25,10 +24,6 @@ public class MainTest {
     private PrintStream standardOut;
     private ByteArrayOutputStream outputStream;
     private View retailStoreView;
-    //@Test
-    //public void testMain() {
-    //    assertDoesNotThrow(() -> Main.main(null));
-    //}
 
     @BeforeEach
     public void setup() throws Exception {
@@ -46,9 +41,14 @@ public class MainTest {
         eash.addObserver(revenueView);
         // eash.addObserver(revenueOutput);
 
-         Controller controller = new Controller(eish, eash, slh, cr);
+        Controller controller = new Controller(eish, eash, slh, cr);
         retailStoreView = new View(controller);
         retailStoreView.sampleRun();
+    }
+
+    @Test
+    public void testMain() {
+        assertDoesNotThrow(() -> Main.main(null));
     }
 
     @AfterEach
@@ -56,7 +56,6 @@ public class MainTest {
         System.setOut(standardOut);
     }
 
-    @Disabled
     @Test
     public void addItemTest() {
         String expected1 = "Added 1 of item with item id 0 to the sale.\n" +
@@ -95,7 +94,7 @@ public class MainTest {
                 "TotalRevenueView shows: 81.8\n" +
                 "------------------Begin Receipt-------------------\n" +
                 "Time of Sale:";
-                
+
         String expected2 = "O'Boy 450g       1 x 37:95       37:95 SEK\n" +
                 "Heineken 33cl    2 x 11:95       11:95 SEK\n" +
                 "Aftonbladet      1 x 19:95       19:95 SEK\n\n" +
