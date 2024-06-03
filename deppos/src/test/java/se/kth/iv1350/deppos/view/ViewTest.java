@@ -54,7 +54,6 @@ public class ViewTest {
         expected = expected.replaceAll("[^a-zA-Z0-9.%]", "");
         boolean containsItemInfo = outputStream.toString().replaceAll("[^a-zA-Z0-9.%]", "").contains(expected);
 
-        standardOut.println("Captured Output:\n" + outputStream.toString());
         assertTrue(containsItemInfo, "It didn't print the expected result: " + expected);
     }
 
@@ -68,7 +67,6 @@ public class ViewTest {
         boolean containsItemInfo1 = outputStream.toString().replaceAll("[^a-zA-Z0-9.%]", "").contains(expected1);
         boolean containsItemInfo2 = outputStream.toString().replaceAll("[^a-zA-Z0-9.%]", "").contains(expected2);
 
-        standardOut.println("Captured Output:\n" + outputStream.toString());
         assertTrue(containsItemInfo1, "It didn't print the expected result: " + expected1);
         assertTrue(containsItemInfo2, "It didn't print the expected result: " + expected2);
     }

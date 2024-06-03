@@ -110,7 +110,6 @@ public class MainTest {
         boolean containsItemInfo1 = outputStream.toString().replaceAll("[^a-zA-Z0-9.%]", "").contains(expected1);
         boolean containsItemInfo2 = outputStream.toString().replaceAll("[^a-zA-Z0-9.%]", "").contains(expected2);
 
-        standardOut.println("Captured Output:\n" + outputStream.toString());
         assertTrue(containsItemInfo1, "It didn't print the expected result: " + expected1);
         assertTrue(containsItemInfo2, "It didn't print the expected result: " + expected2);
     }

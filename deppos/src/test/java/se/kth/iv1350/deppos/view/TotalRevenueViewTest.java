@@ -53,7 +53,6 @@ public class TotalRevenueViewTest {
     public void doShowTotalIncomeTest() {
 
         String expected = "TotalRevenueView shows: 81.8";
-        standardOut.println("Captured Output:\n" + outputStream.toString());
         assertTrue(outputStream.toString().contains(expected), "It didn't print the expected result: " + expected);
     }
 
