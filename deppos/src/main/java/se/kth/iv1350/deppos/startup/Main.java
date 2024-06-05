@@ -42,10 +42,12 @@ public class Main {
     }
 
     public static void sampleRunInheritanceComposition() {
+        System.out.println("Testing InheritanceRandom()");
         InheritanceRandom myInheritanceRandom = new InheritanceRandom();
         myInheritanceRandom.printRandomIntTimes2(100);
         System.out.println("");
-            
+        
+        System.out.println("Testing CompositionRandom()");
         CompositionRandom myCompositionRandom = new CompositionRandom();
         myCompositionRandom.printRandomIntTimes2(100);
     }

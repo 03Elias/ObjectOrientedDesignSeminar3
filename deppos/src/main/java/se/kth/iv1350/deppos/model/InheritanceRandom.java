@@ -19,7 +19,7 @@ public class InheritanceRandom extends Random {
      * @return The random integer multiplied by 2.
      */
     @Override
-    public int nextInt(int maxBound) {
+    private int nextInt(int maxBound) {
         int randomInt = super.nextInt(maxBound);
         System.out.println("This is the random integer: " + randomInt);
         System.out.println("This is the random integer * 2: " + randomInt * 2);
