@@ -1,6 +1,7 @@
-package se.kth.iv1350.deppos.model;
+package se.kth.iv1350.deppos.view;
 
 public abstract class RevenueObserver {
+    protected double totalIncome = 0.0;
 
     /**
      * Adds the price of the sale to the total income.
@@ -11,7 +12,7 @@ public abstract class RevenueObserver {
         showTotalIncome();
     }
 
-    protected abstract void calculateTotalIncome(double priceOfTheSaleThatWasJustMade);
+    //protected abstract void calculateTotalIncome(double priceOfTheSaleThatWasJustMade);
 
     /**
      * Prints the total amount of money earned since the program started.
@@ -27,4 +28,8 @@ public abstract class RevenueObserver {
     protected abstract void doShowTotalIncome() throws Exception;
 
     protected abstract void handleErrors(Exception e);
+
+    private void calculateTotalIncome(double priceOfTheSaleThatWasJustMade) {
+        totalIncome += priceOfTheSaleThatWasJustMade;
+    }
 }

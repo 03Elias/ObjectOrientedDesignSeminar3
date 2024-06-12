@@ -37,6 +37,7 @@ public class Main {
 
         if (args != null) {
             retailStoreView.sampleRun();
+            retailStoreView.sampleRun();
             //sampleRunInheritanceComposition();
         }
     }
