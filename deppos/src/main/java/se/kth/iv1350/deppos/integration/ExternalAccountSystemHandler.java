@@ -3,8 +3,8 @@ package se.kth.iv1350.deppos.integration;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.kth.iv1350.deppos.model.RevenueObserver;
 import se.kth.iv1350.deppos.model.dto.SaleDTO;
+import se.kth.iv1350.deppos.view.RevenueObserver;
 
 public class ExternalAccountSystemHandler {
     private int totalAmountOfMoney;

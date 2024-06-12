@@ -36,18 +36,19 @@ public class Main {
         View retailStoreView = new View(controller);
 
         if (args != null) {
-            // retailStoreView.sampleRun();
-            sampleRunInheritanceComposition();
+            retailStoreView.sampleRun();
+            retailStoreView.sampleRun();
+            //sampleRunInheritanceComposition();
         }
     }
 
     public static void sampleRunInheritanceComposition() {
-        System.out.println("Testing InheritanceRandom().printRandomIntTimes2");
+        System.out.println("Testing InheritanceRandom()");
         InheritanceRandom myInheritanceRandom = new InheritanceRandom();
         myInheritanceRandom.printRandomIntTimes2(100);
         System.out.println("");
         
-        System.out.println("Testing CompositionRandom().printRandomIntTimes2");
+        System.out.println("Testing CompositionRandom()");
         CompositionRandom myCompositionRandom = new CompositionRandom();
         myCompositionRandom.printRandomIntTimes2(100);
     }
